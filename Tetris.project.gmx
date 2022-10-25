@@ -18,6 +18,7 @@
   <objects name="objects">
     <object>objects\obj_control</object>
     <object>objects\obj_block</object>
+    <object>objects\obj_brick</object>
     <object>objects\obj_settings</object>
   </objects>
   <rooms name="rooms">
