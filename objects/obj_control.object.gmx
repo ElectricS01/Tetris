@@ -64,14 +64,6 @@ if position_meeting(720, 144, obj_brick) game_restart()
 
 if instance_exists(obj_block){
     
-    if time &gt;= 30{
-        time = 0
-        inst0.y += 64
-        inst1.y += 64
-        inst2.y += 64
-        inst3.y += 64
-    }
-    
     if keyboard_check_pressed(vk_right){
         if !(position_meeting(inst0.x+64, inst0.y, obj_brick) || position_meeting(inst1.x+64, inst1.y, obj_brick) || position_meeting(inst2.x+64, inst2.y, obj_brick) || position_meeting(inst3.x+64, inst3.y, obj_brick)){
             if (inst0.x &lt; 976 &amp;&amp; inst1.x &lt; 976 &amp;&amp; inst2.x &lt; 976 &amp;&amp; inst3.x &lt; 976){
@@ -99,6 +91,16 @@ if instance_exists(obj_block){
         inst1.y += 64
         inst2.y += 64
         inst3.y += 64
+    }
+    
+    if time &gt;= 30{
+        if(inst0.y &lt; 1296 &amp;&amp; inst1.y &lt; 1296 &amp;&amp; inst2.y &lt; 1296 &amp;&amp; inst3.y &lt; 1296 &amp;&amp; !position_meeting(inst0.x,inst0.y+64,obj_brick) &amp;&amp; !position_meeting(inst1.x,inst1.y+64,obj_brick) &amp;&amp; !position_meeting(inst2.x,inst2.y+64,obj_brick) &amp;&amp; !position_meeting(inst3.x,inst3.y+64,obj_brick)){
+            time = 0
+            inst0.y += 64
+            inst1.y += 64
+            inst2.y += 64
+            inst3.y += 64
+        }
     }
     
     if keyboard_check_pressed(vk_up){
@@ -394,6 +396,7 @@ if instance_exists(inst0) &amp;&amp; instance_exists(inst1) &amp;&amp; instance_
 }
 
 if variable &gt;= 1{
+    score += (((obj_control.var11+1*10)*(obj_control.var12+1*3))*(obj_control.var13+1*3))*(obj_control.var14+1*3)
     with obj_brick{
         if y &lt; obj_control.variable{
             y += (obj_control.var11 + obj_control.var12 + obj_control.var13 + obj_control.var14) * 64
@@ -425,7 +428,7 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
         if y = obj_control.var1{
             instance_destroy()
             obj_control.variable = obj_control.var1
-            obj_control.var11 = 1
+            obj_control.var12 = 1
         }
     }
 }
@@ -437,7 +440,7 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
         if y = obj_control.var1{
             instance_destroy()
             obj_control.variable = obj_control.var1
-            obj_control.var11 = 1
+            obj_control.var13 = 1
         }
     }
 }
@@ -449,7 +452,7 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
         if y = obj_control.var1{
             instance_destroy()
             obj_control.variable = obj_control.var1
-            obj_control.var11 = 1
+            obj_control.var14 = 1
         }
     }
 }
@@ -479,7 +482,8 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
             <string>draw_set_alpha(1)
 draw_set_font(fnt_header)
 draw_set_colour(c_white)
-draw_text(0,0,"Tetris By Electric S01")
+draw_text(10,0,"Tetris By Electric S01")
+draw_text(10,80,"Score:" + string(score))
 
 draw_set_colour(make_colour_rgb(25, 25, 25))
 draw_rectangle(400,144,1040,1296, false)
@@ -490,13 +494,13 @@ draw_rectangle(400,144,1040,1296, true)
 
 draw_sprite(spr_settings, 0, 1400, 40)
 
-va = 64
+va = 80
 
 draw_set_colour(c_white)
-draw_text(0, va, "FPS = " + string(fps))
-draw_text(0, 2*va, "Real FPS = " + string(fps_real))
-draw_text(0, 4*va, "room_speed = " + string(room_speed))
-draw_text(0, 6*va, "variable = " + string(rotation))
+draw_text(0, 13*va, "FPS = " + string(fps))
+draw_text(0, 14*va, "Real FPS = " + string(fps_real))
+draw_text(0, 15*va, "room_speed = " + string(room_speed))
+draw_text(0, 16*va, "Test var = " + string(rotation))
 
 </string>
           </argument>
