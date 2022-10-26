@@ -135,20 +135,116 @@ if instance_exists(obj_block){
         
         if type = 2{
             if rotation = 0{
-                if !(position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
-                    inst0.y += 128
+                if !(position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
+                    inst0.y += 64
                     inst2.x += 64 inst2.y += 64
-                    inst3.x += 64 inst0.y -= 64
+                    inst3.x += 64 
                     rotation = 1
+                    exit
                 }
             }
             
             if rotation = 1{
-                if !(position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
-                    inst0.y += 128
+                if !(position_meeting(inst0.x, inst0.y-64, obj_brick) &amp;&amp; position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; position_meeting(inst3.x-64, inst3.y+64, obj_brick)){
+                    inst0.y -= 64
+                    inst2.x -= 64 inst2.y -= 64
+                    inst3.x -= 64
+                    rotation = 0
+                }
+            }
+        }
+        
+        if type = 3{
+            if rotation = 0{
+                if !(position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; position_meeting(inst3.x+128, inst3.y, obj_brick)){
+                    inst0.x -= 64 inst0.y += 64
                     inst2.x += 64 inst2.y += 64
-                    inst3.x += 64 inst0.y -= 64
+                    inst3.x += 128
+                    rotation = 1
+                    exit
+                }
+            }
+            
+            if rotation = 1{
+                if !(position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; position_meeting(inst3.x-128, inst3.y, obj_brick)){
+                    inst0.x += 64 inst0.y -= 64
+                    inst2.x -= 64 inst2.y -= 64
+                    inst3.x -= 128
+                    rotation = 0
+                }
+            }
+        }
+        
+        if type = 4{
+            if rotation = 0{
+                if !(position_meeting(inst2.x, inst2.y+64, obj_brick)){
+                    inst3.x += 64 inst3.y += 64
+                    rotation = 1
+                    exit
+                }
+            }
+            
+            if rotation = 1{
+                if !(position_meeting(inst2.x-64, inst2.y, obj_brick)){
+                    inst1.x -=64 inst1.y += 64
                     rotation = 2
+                    exit
+                }
+            }
+            
+            if rotation = 2{
+                if !(position_meeting(inst2.x, inst2.y+64, obj_brick)){
+                    inst0.x -=64 inst0.y -= 64
+                    rotation = 3
+                    exit
+                }
+            }
+            
+            if rotation = 3{
+                if !(position_meeting(inst2.x+64, inst2.y, obj_brick)){
+                    inst3.x -= 64 inst3.y -= 64
+                    inst1.x +=64 inst1.y -= 64
+                    inst0.x +=64 inst0.y += 64
+                    rotation = 0
+                }
+            }
+        }
+        
+        if type = 5{
+            if rotation = 0{
+                if !(position_meeting(inst2.x, inst2.y+64, obj_brick)){
+                    inst0.y += 128
+                    inst1.x -= 64 inst1.y -= 64
+                    inst3.x += 64 inst3.y += 64
+                    rotation = 1
+                    exit
+                }
+            }
+            
+            if rotation = 1{
+                if !(position_meeting(inst2.x-64, inst2.y, obj_brick)){
+                    inst0.x -= 128
+                    inst1.x -=64 inst1.y -= 64
+                    inst3.x += 64 inst3.y += 64
+                    rotation = 2
+                    exit
+                }
+            }
+            
+            if rotation = 2{
+                if !(position_meeting(inst2.x, inst2.y+64, obj_brick)){
+                    inst0.x -=64 inst0.y -= 64
+                    rotation = 3
+                    exit
+                }
+            }
+            
+            if rotation = 3{
+                if !(position_meeting(inst2.x+64, inst2.y, obj_brick)){
+                    inst3.x -= 64 inst3.y -= 64
+                    inst1.x +=64 inst1.y -= 64
+                    inst0.x +=64 inst0.y += 64
+                    rotation = 0
                 }
             }
         }
@@ -157,7 +253,7 @@ if instance_exists(obj_block){
 
 if !instance_exists(obj_block){
     rotation = 0
-    rand = 2 /* round(random(7)) */
+    rand = 5/*round(random(7))*/
     
     if rand = 0{
     type = 0
@@ -195,9 +291,9 @@ if !instance_exists(obj_block){
         type = 3
         inst0 = instance_create(720, 208, obj_block)
         inst0.image_index = 3
-        inst1 = instance_create(656, 144, obj_block)
+        inst1 = instance_create(656, 208, obj_block)
         inst1.image_index = 3
-        inst2 = instance_create(656, 208, obj_block)
+        inst2 = instance_create(656, 144, obj_block)
         inst2.image_index = 3
         inst3 = instance_create(592, 144, obj_block)
         inst3.image_index = 3
@@ -314,6 +410,7 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
         }
     }
 }
+
 </string>
           </argument>
         </arguments>
