@@ -36,6 +36,7 @@ obj_control.var13 = 0
 obj_control.var14 = 0
 rotation = 0
 type = 0
+randomize()
 </string>
           </argument>
         </arguments>
@@ -95,7 +96,7 @@ if instance_exists(obj_block){
     
     if time &gt;= 30{
         time = 0
-        if(inst0.y &lt; 1296 &amp;&amp; inst1.y &lt; 1296 &amp;&amp; inst2.y &lt; 1296 &amp;&amp; inst3.y &lt; 1296 &amp;&amp; !position_meeting(inst0.x,inst0.y+64,obj_brick) &amp;&amp; !position_meeting(inst1.x,inst1.y+64,obj_brick) &amp;&amp; !position_meeting(inst2.x,inst2.y+64,obj_brick) &amp;&amp; !position_meeting(inst3.x,inst3.y+64,obj_brick)){
+        if(inst0.y &lt; 1232 &amp;&amp; inst1.y &lt; 1232 &amp;&amp; inst2.y &lt; 1232 &amp;&amp; inst3.y &lt; 1232 &amp;&amp; !position_meeting(inst0.x,inst0.y+64,obj_brick) &amp;&amp; !position_meeting(inst1.x,inst1.y+64,obj_brick) &amp;&amp; !position_meeting(inst2.x,inst2.y+64,obj_brick) &amp;&amp; !position_meeting(inst3.x,inst3.y+64,obj_brick)){
             inst0.y += 64
             inst1.y += 64
             inst2.y += 64
