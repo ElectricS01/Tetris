@@ -104,10 +104,14 @@ if instance_exists(obj_restart){
         }
         
         if keyboard_check_pressed(vk_down){
-            inst0.y += 64
-            inst1.y += 64
-            inst2.y += 64
-            inst3.y += 64
+            if instance_exists(inst0) &amp;&amp; instance_exists(inst1) &amp;&amp; instance_exists(inst2) &amp;&amp; instance_exists(inst3){
+                if (inst0.y &lt;= 1168 &amp;&amp; inst1.y &lt;= 1168 &amp;&amp; inst2.y &lt;= 1168 &amp;&amp; inst3.y &lt;= 1168 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+64, obj_brick)){
+                    inst0.y += 64
+                    inst1.y += 64
+                    inst2.y += 64
+                    inst3.y += 64
+                }
+            }
         }
         
         if time &gt;= 30{
@@ -496,6 +500,10 @@ if instance_exists(obj_restart){
             <kind>1</kind>
             <string>global.hs = score 
 score = 0
+
+ini_open("highscore.ini")
+ini_write_real("save","highscore",global.hs)
+ini_close()
 </string>
           </argument>
         </arguments>
@@ -519,6 +527,10 @@ score = 0
           <argument>
             <kind>1</kind>
             <string>global.hs = 0
+
+ini_open("highscore.ini")
+global.hs = ini_read_real("save","highscore",global.hs)
+ini_close()
 </string>
           </argument>
         </arguments>
