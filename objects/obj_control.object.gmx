@@ -498,7 +498,7 @@ if instance_exists(obj_restart){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.hs = score 
+            <string>if score &gt; global.hs global.hs = score 
 score = 0
 
 ini_open("highscore.ini")
