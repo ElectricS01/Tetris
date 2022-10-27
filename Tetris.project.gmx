@@ -9,6 +9,7 @@
     <sprite>sprites\spr_block</sprite>
     <sprite>sprites\spr_settings</sprite>
     <sprite>sprites\spr_x</sprite>
+    <sprite>sprites\spr_restart</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -17,9 +18,11 @@
   </fonts>
   <objects name="objects">
     <object>objects\obj_control</object>
+    <object>objects\obj_restart</object>
     <object>objects\obj_block</object>
     <object>objects\obj_brick</object>
     <object>objects\obj_settings</object>
+    <object>objects\obj_coverui</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
