@@ -29,14 +29,22 @@
 global.settings = false
 rand = 0
 debug = false
-variable = 0
-obj_control.var11 = 0
-obj_control.var12 = 0
-obj_control.var13 = 0
-obj_control.var14 = 0
 rotation = 0
 type = 0
 randomize()
+
+/*variable = 0
+var11 = 0
+var12 = 0
+var13 = 0
+var14 = 0
+var1232 = 0
+var1168 = 0
+var1104 = 0
+var1040 = 0*/
+
+var21 = 0
+var22 = 0
 </string>
           </argument>
         </arguments>
@@ -96,7 +104,7 @@ if instance_exists(obj_block){
     
     if time &gt;= 30{
         time = 0
-        if(inst0.y &lt; 1232 &amp;&amp; inst1.y &lt; 1232 &amp;&amp; inst2.y &lt; 1232 &amp;&amp; inst3.y &lt; 1232 &amp;&amp; !position_meeting(inst0.x,inst0.y+64,obj_brick) &amp;&amp; !position_meeting(inst1.x,inst1.y+64,obj_brick) &amp;&amp; !position_meeting(inst2.x,inst2.y+64,obj_brick) &amp;&amp; !position_meeting(inst3.x,inst3.y+64,obj_brick)){
+        if (inst0.y &lt; 1232 &amp;&amp; inst1.y &lt; 1232 &amp;&amp; inst2.y &lt; 1232 &amp;&amp; inst3.y &lt; 1232 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+64, obj_brick)){
             inst0.y += 64
             inst1.y += 64
             inst2.y += 64
@@ -141,12 +149,12 @@ if instance_exists(obj_block){
                 if !(position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
                     inst0.y += 64
                     inst2.x += 64 inst2.y += 64
-                    inst3.x += 64 
+                    inst3.x += 64
                     rotation = 1
                     exit
                 }
             }
-            
+                
             if rotation = 1{
                 if !(position_meeting(inst0.x, inst0.y-64, obj_brick) &amp;&amp; position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; position_meeting(inst3.x-64, inst3.y+64, obj_brick)){
                     inst0.y -= 64
@@ -167,7 +175,7 @@ if instance_exists(obj_block){
                     exit
                 }
             }
-            
+        
             if rotation = 1{
                 if !(position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; position_meeting(inst3.x-128, inst3.y, obj_brick)){
                     inst0.x += 64 inst0.y -= 64
@@ -186,10 +194,10 @@ if instance_exists(obj_block){
                     exit
                 }
             }
-            
+        
             if rotation = 1{
                 if !(position_meeting(inst2.x-64, inst2.y, obj_brick)){
-                    inst1.x -=64 inst1.y += 64
+                    inst1.x -= 64 inst1.y += 64
                     rotation = 2
                     exit
                 }
@@ -197,17 +205,17 @@ if instance_exists(obj_block){
             
             if rotation = 2{
                 if !(position_meeting(inst2.x, inst2.y+64, obj_brick)){
-                    inst0.x -=64 inst0.y -= 64
+                    inst0.x -= 64 inst0.y -= 64
                     rotation = 3
                     exit
                 }
             }
-            
+        
             if rotation = 3{
                 if !(position_meeting(inst2.x+64, inst2.y, obj_brick)){
                     inst3.x -= 64 inst3.y -= 64
-                    inst1.x +=64 inst1.y -= 64
-                    inst0.x +=64 inst0.y += 64
+                    inst1.x += 64 inst1.y -= 64
+                    inst0.x += 64 inst0.y += 64
                     rotation = 0
                 }
             }
@@ -223,11 +231,11 @@ if instance_exists(obj_block){
                     exit
                 }
             }
-            
+        
             if rotation = 1{
                 if !(position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
                     inst0.x -= 128
-                    inst1.x -=64 inst1.y -= 64
+                    inst1.x -= 64 inst1.y -= 64
                     inst3.x += 64 inst3.y += 64
                     rotation = 2
                     exit
@@ -257,7 +265,7 @@ if instance_exists(obj_block){
         if type = 6{
             if rotation = 0{
                 if !(position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; position_meeting(inst1.x-64, inst1.y+64, obj_brick) &amp;&amp; position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
-                    inst0.x -= 64 inst0.y += 64 
+                    inst0.x -= 64 inst0.y += 64
                     inst2.x += 64 inst2.y -= 64
                     inst3.x += 128
                     rotation = 1
@@ -268,7 +276,7 @@ if instance_exists(obj_block){
             if rotation = 1{
                 if !(position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
                     inst0.x -= 64 inst0.y -= 64
-                    inst2.x +=64 inst2.y += 64
+                    inst2.x += 64 inst2.y += 64
                     inst3.y += 128
                     rotation = 2
                     exit
@@ -302,7 +310,7 @@ if !instance_exists(obj_block){
     rand = round(random(7))
     
     if rand = 0{
-    type = 0
+        type = 0
         inst0 = instance_create(784, 144, obj_block)
         inst1 = instance_create(720, 144, obj_block)
         inst2 = instance_create(656, 144, obj_block)
@@ -395,9 +403,9 @@ if instance_exists(inst0) &amp;&amp; instance_exists(inst1) &amp;&amp; instance_
         instance_destroy(obj_block)
     }
 }
-
+/*
 if variable &gt;= 1{
-    score += (((obj_control.var11+1*10)*(obj_control.var12+1*3))*(obj_control.var13+1*3))*(obj_control.var14+1*3)
+    score += (((obj_control.var11+1 * 10) * (obj_control.var12+1 * 3)) * (obj_control.var13+1 * 3)) * (obj_control.var14+1 * 3)
     with obj_brick{
         if y &lt; obj_control.variable{
             y += (obj_control.var11 + obj_control.var12 + obj_control.var13 + obj_control.var14) * 64
@@ -410,9 +418,17 @@ if variable &gt;= 1{
     variable = 0
 }
 
+var1232 = 0
 var1 = 1232
+if obj_brick{
+    with obj_brick{
+        if y = obj_control.var1{
+            obj_control.var1232 += 1
+        }
+    }
+}
 
-if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1, obj_brick) &amp;&amp; position_meeting(528, var1,obj_brick) &amp;&amp; position_meeting(592, var1, obj_brick) &amp;&amp; position_meeting(656, var1, obj_brick) &amp;&amp; position_meeting(720, var1,obj_brick) &amp;&amp; position_meeting(784, var1, obj_brick) &amp;&amp; position_meeting(848, var1, obj_brick) &amp;&amp; position_meeting(912, var1,obj_brick) &amp;&amp; position_meeting(976, var1, obj_brick){
+if var1232 = 10{
     with obj_brick{
         if y = obj_control.var1{
             instance_destroy()
@@ -422,9 +438,17 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
     }
 }
 
+var1168 = 0
 var1 = 1168
+if obj_brick{
+    with obj_brick{
+        if y = obj_control.var1{
+            obj_control.var1168 += 1
+        }
+    }
+}
 
-if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1, obj_brick) &amp;&amp; position_meeting(528, var1,obj_brick) &amp;&amp; position_meeting(592, var1, obj_brick) &amp;&amp; position_meeting(656, var1, obj_brick) &amp;&amp; position_meeting(720, var1,obj_brick) &amp;&amp; position_meeting(784, var1, obj_brick) &amp;&amp; position_meeting(848, var1, obj_brick) &amp;&amp; position_meeting(912, var1,obj_brick) &amp;&amp; position_meeting(976, var1, obj_brick){
+if var1168 = 10{
     with obj_brick{
         if y = obj_control.var1{
             instance_destroy()
@@ -434,9 +458,17 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
     }
 }
 
+var1104 = 0
 var1 = 1104
+if obj_brick{
+    with obj_brick{
+        if y = obj_control.var1{
+            obj_control.var1104 += 1
+        }
+    }
+}
 
-if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1, obj_brick) &amp;&amp; position_meeting(528, var1,obj_brick) &amp;&amp; position_meeting(592, var1, obj_brick) &amp;&amp; position_meeting(656, var1, obj_brick) &amp;&amp; position_meeting(720, var1,obj_brick) &amp;&amp; position_meeting(784, var1, obj_brick) &amp;&amp; position_meeting(848, var1, obj_brick) &amp;&amp; position_meeting(912, var1,obj_brick) &amp;&amp; position_meeting(976, var1, obj_brick){
+if var1104 = 10{
     with obj_brick{
         if y = obj_control.var1{
             instance_destroy()
@@ -446,9 +478,17 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
     }
 }
 
+var1040 = 0
 var1 = 1040
+if obj_brick{
+    with obj_brick{
+        if y = obj_control.var1{
+            obj_control.var1040 += 1
+        }
+    }
+}
 
-if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1, obj_brick) &amp;&amp; position_meeting(528, var1,obj_brick) &amp;&amp; position_meeting(592, var1, obj_brick) &amp;&amp; position_meeting(656, var1, obj_brick) &amp;&amp; position_meeting(720, var1,obj_brick) &amp;&amp; position_meeting(784, var1, obj_brick) &amp;&amp; position_meeting(848, var1, obj_brick) &amp;&amp; position_meeting(912, var1,obj_brick) &amp;&amp; position_meeting(976, var1, obj_brick){
+if var1040 = 10{
     with obj_brick{
         if y = obj_control.var1{
             instance_destroy()
@@ -457,6 +497,33 @@ if position_meeting(400, var1, obj_brick) &amp;&amp; position_meeting(464, var1,
         }
     }
 }
+*/
+var21 = 1232
+if obj_brick{
+    while var21 &gt;= 144{
+        with obj_brick{
+            if y = obj_control.var21{
+                obj_control.var22 += 1
+            }
+        }
+        if var22 = 10{
+            with obj_brick{
+                if y = obj_control.var21{
+                    instance_destroy()
+                }
+            }
+            with obj_brick{
+                if y &lt;= obj_control.var21{
+                    y += 64
+                }
+            }
+            score += 100
+        }
+        var21 -= 64
+        var22 = 0
+    }
+}
+
 
 </string>
           </argument>
@@ -501,7 +568,6 @@ draw_set_colour(c_white)
 draw_text(0, 13*va, "FPS = " + string(fps))
 draw_text(0, 14*va, "Real FPS = " + string(fps_real))
 draw_text(0, 15*va, "room_speed = " + string(room_speed))
-draw_text(0, 16*va, "Test var = " + string(rotation))
 
 </string>
           </argument>
