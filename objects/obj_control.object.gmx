@@ -34,6 +34,7 @@ type = 0
 randomize()
 game_ended = false
 game_paused = false
+next_block = round(random(8)-1)
 
 /*variable = 0
 var11 = 0
@@ -328,7 +329,7 @@ if instance_exists(obj_restart){
     
     while !instance_exists(obj_block){
         rotation = 0
-        rand = round(random(8)-1)
+        rand = next_block
         
         if rand = 0{
             type = 0
@@ -437,6 +438,8 @@ if instance_exists(obj_restart){
             inst3 = instance_create(592, 144, obj_block)
             inst3.image_index = 6
         }
+        
+        next_block = round(random(8)-1)
     }
     
     if time = 29{
@@ -583,17 +586,60 @@ draw_sprite(spr_settings, 0, 1400, 40)
 va = 80
 
 draw_set_colour(c_white)
+draw_text(0, 14*va, "Next block = " + string(next_block))
 draw_text(0, 15*va, "FPS = " + string(fps))
 draw_text(0, 16*va, "Real FPS = " + string(fps_real))
 draw_text(0, 17*va, "room_speed = " + string(room_speed))
 
 /*if instance_exists(obj_block){
-draw_text(0, 14*va, "FPS = " + string(inst0.y))
 draw_text(inst0.x,inst0.y,"1")
 draw_text(inst1.x,inst1.y,"2")
 draw_text(inst2.x,inst2.y,"3")
 draw_text(inst3.x,inst3.y,"4")
 }*/
+
+if next_block = 0{
+    draw_sprite(spr_block, 0, 1312, 656)
+    draw_sprite(spr_block, 0, 1248, 656)
+    draw_sprite(spr_block, 0, 1184, 656)
+    draw_sprite(spr_block, 0, 1120, 656)
+}
+if next_block = 1{
+    draw_sprite(spr_block, 1, 1248, 720)
+    draw_sprite(spr_block, 1, 1248, 656)
+    draw_sprite(spr_block, 1, 1184, 720)
+    draw_sprite(spr_block, 1, 1184, 656)
+}
+if next_block = 2{
+    draw_sprite(spr_block, 2, 1248, 656)
+    draw_sprite(spr_block, 2, 1184, 720)
+    draw_sprite(spr_block, 2, 1184, 656)
+    draw_sprite(spr_block, 2, 1120, 720)
+}
+if next_block = 3{
+    draw_sprite(spr_block, 3, 1248, 720)
+    draw_sprite(spr_block, 3, 1184, 720)
+    draw_sprite(spr_block, 3, 1184, 656)
+    draw_sprite(spr_block, 3, 1120, 656)
+}
+if next_block = 4{
+    draw_sprite(spr_block, 4, 1248, 720)
+    draw_sprite(spr_block, 4, 1184, 720)
+    draw_sprite(spr_block, 4, 1184, 656)
+    draw_sprite(spr_block, 4, 1120, 720)
+}
+if next_block = 5{
+    draw_sprite(spr_block, 5, 1248, 720)
+    draw_sprite(spr_block, 5, 1248, 656)
+    draw_sprite(spr_block, 5, 1184, 720)
+    draw_sprite(spr_block, 5, 1120, 720)
+}
+if next_block = 6{
+    draw_sprite(spr_block, 6, 1248, 720)
+    draw_sprite(spr_block, 6, 1184, 720)
+    draw_sprite(spr_block, 6, 1120, 720)
+    draw_sprite(spr_block, 6, 1120, 656)
+}
 
 </string>
           </argument>
