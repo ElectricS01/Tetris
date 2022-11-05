@@ -34,17 +34,10 @@ type = 0
 randomize()
 game_ended = false
 game_paused = false
-next_block = round(random(8)-1)
-
-/*variable = 0
-var11 = 0
-var12 = 0
-var13 = 0
-var14 = 0
-var1232 = 0
-var1168 = 0
-var1104 = 0
-var1040 = 0*/
+next_block = -1
+while next_block &lt; 0{
+    next_block = round(random(7)-1)
+}
 
 var21 = 0
 var22 = 0
@@ -72,10 +65,10 @@ var22 = 0
             <kind>1</kind>
             <string>if game_ended || game_paused{
     if !instance_exists(obj_restart){
-        instance_create(720,800,obj_restart)
+        instance_create(720, 800, obj_restart)
     }
 } else {
-if instance_exists(obj_restart){
+    if instance_exists(obj_restart){
         instance_destroy(obj_restart)
     }
     time += 1
@@ -154,7 +147,7 @@ if instance_exists(obj_restart){
                         }
                     }
                 }
-                
+            
                 if rotation = 1{
                     if (!position_meeting(inst0.x+128, inst0.y+64, obj_brick) || !position_meeting(inst2.x+64, inst2.y, obj_brick) || !position_meeting(inst3.x, inst3.y-64, obj_brick) || !position_meeting(inst4.x-64, inst4.y-128, obj_brick)){
                         inst0.x += 128 inst0.y += 64
@@ -165,7 +158,7 @@ if instance_exists(obj_restart){
                     }
                 }
             }
-            
+                
             if type = 2{
                 if rotation = 0{
                     if (!position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y, obj_brick)){
@@ -176,7 +169,7 @@ if instance_exists(obj_restart){
                         exit
                     }
                 }
-                    
+                
                 if rotation = 1{
                     if (!position_meeting(inst0.x, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y, obj_brick)){
                         inst0.y -= 64
@@ -186,18 +179,18 @@ if instance_exists(obj_restart){
                     }
                 }
             }
-            
+                
             if type = 3{
                 if rotation = 0{
-                    if (!position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
-                        inst0.x -= 64 inst0.y += 64
-                        inst2.x += 64 inst2.y += 64
-                        inst3.x += 128
-                        rotation = 1
-                        exit
-                    }
+                if (!position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
+                inst0.x -= 64 inst0.y += 64
+                inst2.x += 64 inst2.y += 64
+                inst3.x += 128
+                rotation = 1
+                exit
                 }
-            
+                }
+                
                 if rotation = 1{
                     if (!position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y, obj_brick)){
                         inst0.x += 64 inst0.y -= 64
@@ -207,7 +200,7 @@ if instance_exists(obj_restart){
                     }
                 }
             }
-            
+                
             if type = 4{
                 if rotation = 0{
                     if (!position_meeting(inst2.x, inst2.y+64, obj_brick)){
@@ -216,7 +209,7 @@ if instance_exists(obj_restart){
                         exit
                     }
                 }
-            
+                
                 if rotation = 1{
                     if (!position_meeting(inst2.x-64, inst2.y, obj_brick)){
                         inst1.x -= 64 inst1.y += 64
@@ -232,7 +225,7 @@ if instance_exists(obj_restart){
                         exit
                     }
                 }
-            
+                
                 if rotation = 3{
                     if (!position_meeting(inst2.x+64, inst2.y, obj_brick)){
                         inst3.x -= 64 inst3.y -= 64
@@ -242,7 +235,7 @@ if instance_exists(obj_restart){
                     }
                 }
             }
-            
+                
             if type = 5{
                 if rotation = 0{
                     if (!position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
@@ -253,7 +246,7 @@ if instance_exists(obj_restart){
                         exit
                     }
                 }
-            
+                
                 if rotation = 1{
                     if (!position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
                         inst0.x -= 128
@@ -283,7 +276,7 @@ if instance_exists(obj_restart){
                     }
                 }
             }
-            
+                
             if type = 6{
                 if rotation = 0{
                     if (!position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
@@ -333,7 +326,7 @@ if instance_exists(obj_restart){
         
         if rand = 0{
             type = 0
-            if(position_meeting(784, 144, obj_brick) || position_meeting(720, 144, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(592, 144, obj_brick)){
+            if (position_meeting(784, 144, obj_brick) || position_meeting(720, 144, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(592, 144, obj_brick)){
                 game_ended = true
                 exit
             }
@@ -345,7 +338,7 @@ if instance_exists(obj_restart){
         
         if rand = 1{
             type = 1
-            if(position_meeting(720, 144, obj_brick) || position_meeting(720, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick)){
+            if (position_meeting(720, 144, obj_brick) || position_meeting(720, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick)){
                 game_ended = true
                 exit
             }
@@ -361,7 +354,7 @@ if instance_exists(obj_restart){
         
         if rand = 2{
             type = 2
-            if(position_meeting(720, 144, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
+            if (position_meeting(720, 144, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
                 game_ended = true
                 exit
             }
@@ -377,7 +370,7 @@ if instance_exists(obj_restart){
         
         if rand = 3{
             type = 3
-            if(position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(592, 144, obj_brick)){
+            if (position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(592, 144, obj_brick)){
                 game_ended = true
                 exit
             }
@@ -393,7 +386,7 @@ if instance_exists(obj_restart){
         
         if rand = 4{
             type = 4
-            if(position_meeting(720, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
+            if (position_meeting(720, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
                 game_ended = true
                 exit
             }
@@ -405,11 +398,11 @@ if instance_exists(obj_restart){
             inst2.image_index = 4
             inst3 = instance_create(592, 208, obj_block)
             inst3.image_index = 4
-        }
+            }
         
         if rand = 5{
             type = 5
-            if(position_meeting(720, 144, obj_brick) || position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
+            if (position_meeting(720, 144, obj_brick) || position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
                 game_ended = true
                 exit
             }
@@ -425,7 +418,7 @@ if instance_exists(obj_restart){
         
         if rand = 6{
             type = 6
-            if(position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick) || position_meeting(592, 144, obj_brick)){
+            if (position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick) || position_meeting(592, 144, obj_brick)){
                 game_ended = true
                 exit
             }
@@ -438,8 +431,11 @@ if instance_exists(obj_restart){
             inst3 = instance_create(592, 144, obj_block)
             inst3.image_index = 6
         }
+        next_block = -1
         
-        next_block = round(random(8)-1)
+        while next_block &lt; 0{
+            next_block = round(random(7)-1)
+        }
     }
     
     if time = 29{
@@ -466,6 +462,7 @@ if instance_exists(obj_restart){
                     obj_control.var22 += 1
                 }
             }
+        
             if var22 = 10{
                 with obj_brick{
                     if y = obj_control.var21{
@@ -479,7 +476,7 @@ if instance_exists(obj_restart){
                 }
                 score += 100
                 if score + 100 &gt;= global.hs{
-                    global.hs = score 
+                global.hs = score
                 }
             }
             var21 -= 64
