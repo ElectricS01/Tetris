@@ -41,6 +41,8 @@ while next_block &lt; 0{
 
 var21 = 0
 var22 = 0
+
+debug = false
 </string>
           </argument>
         </arguments>
@@ -121,40 +123,57 @@ var22 = 0
         if keyboard_check_pressed(vk_up){
             if type = 0{
                 if rotation = 0{
-                    if (!position_meeting(inst0.x-128, inst0.y-64, obj_brick) || !position_meeting(inst1.x-64, inst1.y, obj_brick) || !position_meeting(inst2.x, inst2.y+64, obj_brick) || !position_meeting(inst3.x+64, inst3.y+128, obj_brick)){
-                        if (inst0.y &lt;= 1104 &amp;&amp; !position_meeting(inst3.x+64, inst3.y+128, obj_brick)){
-                            inst0.x -= 128 inst0.y -= 64
-                            inst1.x -= 64
-                            inst2.y += 64
-                            inst3.x += 64 inst3.y += 128
-                            rotation = 1
-                            exit
-                        } else {
-                            if (inst0.y &lt;= 1168 &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
-                                inst0.x -= 128 inst0.y -= 128
-                                inst1.x -= 64 inst1.y -= 64
-                                inst3.x += 64 inst3.y += 64
-                                rotation = 1
-                                exit
-                            } else {
-                                inst0.x -= 128 inst0.y -= 192
-                                inst1.x -= 64 inst1.y -= 128
-                                inst2.y -= 64
-                                inst3.x += 64
-                                rotation = 1
-                                exit
-                            }
-                        }
+                    if (inst0.y &lt;= 1104 &amp;&amp; !position_meeting(inst0.x-128, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+128, obj_brick)){
+                        inst0.x -= 128 inst0.y -= 64
+                        inst1.x -= 64
+                        inst2.y += 64
+                        inst3.x += 64 inst3.y += 128
+                        rotation = 1
+                        exit
+                    } else if (inst0.y &lt;= 1168 &amp;&amp; !position_meeting(inst0.x-128, inst0.y-128, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
+                        inst0.x -= 128 inst0.y -= 128
+                        inst1.x -= 64 inst1.y -= 64
+                        inst3.x += 64 inst3.y += 64
+                        rotation = 1
+                        exit
+                    } else if (inst0.y &lt;= 1232 &amp;&amp; !position_meeting(inst0.x-128, inst0.y-192, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-128, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y, obj_brick)){
+                        inst0.x -= 128 inst0.y -= 192
+                        inst1.x -= 64 inst1.y -= 128
+                        inst2.y -= 64
+                        inst3.x += 64
+                        rotation = 1
+                        exit
                     }
                 }
             
                 if rotation = 1{
-                    if (!position_meeting(inst0.x+128, inst0.y+64, obj_brick) || !position_meeting(inst2.x+64, inst2.y, obj_brick) || !position_meeting(inst3.x, inst3.y-64, obj_brick) || !position_meeting(inst4.x-64, inst4.y-128, obj_brick)){
+                    if (inst0.x &gt;= 464 &amp;&amp; inst0.x &lt;= 848 &amp;&amp; !position_meeting(inst0.x+128, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-128, obj_brick)){
                         inst0.x += 128 inst0.y += 64
                         inst1.x += 64
                         inst2.y -= 64
                         inst3.x -= 64 inst3.y -= 128
                         rotation = 0
+                        exit
+                    } else if (inst0.x = 400 &amp;&amp; !position_meeting(inst0.x+192, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x+128, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y-128, obj_brick)){
+                        inst0.x += 192 inst0.y += 64
+                        inst1.x += 128
+                        inst2.x += 64 inst2.y -= 64
+                        inst3.y -= 128
+                        rotation = 0
+                        exit
+                    } else if (inst0.x = 912 &amp;&amp; !position_meeting(inst0.x+64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y-128, obj_brick)){
+                        inst0.x += 64 inst0.y += 64
+                        inst2.x -= 64 inst2.y -= 64
+                        inst3.x -= 128 inst3.y -= 128
+                        rotation = 0
+                        exit
+                    } else if (inst0.x = 976 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x-128, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-192, inst3.y-128, obj_brick)){
+                        inst0.y += 64
+                        inst1.x -= 64
+                        inst2.x -= 128 inst2.y -= 64
+                        inst3.x -= 192 inst3.y -= 128
+                        rotation = 0
+                        exit
                     }
                 }
             }
@@ -279,7 +298,7 @@ var22 = 0
                 
             if type = 6{
                 if rotation = 0{
-                    if (!position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
+                    if (!position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
                         inst0.x -= 64 inst0.y += 64
                         inst2.x += 64 inst2.y -= 64
                         inst3.x += 128
@@ -289,7 +308,7 @@ var22 = 0
                 }
                 
                 if rotation = 1{
-                    if (!position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
+                    if (!position_meeting(inst0.x-64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+128, obj_brick)){
                         inst0.x -= 64 inst0.y -= 64
                         inst2.x += 64 inst2.y += 64
                         inst3.y += 128
@@ -299,7 +318,7 @@ var22 = 0
                 }
                 
                 if rotation = 2{
-                    if (!position_meeting(inst0.x, inst0.y-128, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y+64, obj_brick)){
+                    if (!position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y, obj_brick)){
                         inst0.x += 64 inst0.y -= 64
                         inst2.x -= 64 inst2.y += 64
                         inst3.x -= 128
@@ -309,7 +328,7 @@ var22 = 0
                 }
                 
                 if rotation = 3{
-                    if (!position_meeting(inst0.x+128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-64, obj_brick)){
+                    if (!position_meeting(inst0.x+64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y-128, obj_brick)){
                         inst0.x += 64 inst0.y += 64
                         inst2.x -= 64 inst2.y -= 64
                         inst3.y -= 128
@@ -474,8 +493,8 @@ var22 = 0
                         y += 64
                     }
                 }
-                score += 100
-                if score + 100 &gt;= global.hs{
+                score += 1
+                if score + 1 &gt;= global.hs{
                 global.hs = score
                 }
             }
@@ -510,7 +529,7 @@ var22 = 0
             <string>if score &gt; global.hs global.hs = score 
 score = 0
 
-ini_open("highscore.ini")
+ini_open("userdata.ini")
 ini_write_real("save","highscore",global.hs)
 ini_close()
 </string>
@@ -537,7 +556,7 @@ ini_close()
             <kind>1</kind>
             <string>global.hs = 0
 
-ini_open("highscore.ini")
+ini_open("userdata.ini")
 global.hs = ini_read_real("save","highscore",global.hs)
 ini_close()
 </string>
@@ -566,9 +585,9 @@ ini_close()
 draw_set_alpha(1)
 draw_set_font(fnt_header)
 draw_set_colour(c_white)
-draw_text(10,0,"Tetris By Electric S01")
-draw_text(10,80,"Score:" + string(score))
-draw_text(10,160 ,"High #Score:#" + string(global.hs))
+draw_text(10,10,"Tetris By Electric S01")
+draw_text(30,1320,"Rows:" + string(score))
+draw_text(750,1320 ,"High Score:" + string(global.hs))
 
 
 draw_set_colour(make_colour_rgb(25, 25, 25))
@@ -581,12 +600,13 @@ draw_rectangle(400,144,1040,1296, true)
 draw_sprite(spr_settings, 0, 1400, 40)
 
 va = 80
-
-draw_set_colour(c_white)
-draw_text(0, 14*va, "Next block = " + string(next_block))
-draw_text(0, 15*va, "FPS = " + string(fps))
-draw_text(0, 16*va, "Real FPS = " + string(fps_real))
-draw_text(0, 17*va, "room_speed = " + string(room_speed))
+if debug{
+    draw_set_colour(c_white)
+    draw_text(0, 14*va, "Next block = " + string(next_block))
+    draw_text(0, 15*va, "FPS = " + string(fps))
+    draw_text(0, 16*va, "Real FPS = " + string(fps_real))
+    draw_text(0, 17*va, "room_speed = " + string(room_speed))
+}
 
 /*if instance_exists(obj_block){
 draw_text(inst0.x,inst0.y,"1")
@@ -660,7 +680,7 @@ if next_block = 6{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>debug = true
+            <string>if debug debug = false else debug = true
 </string>
           </argument>
         </arguments>
