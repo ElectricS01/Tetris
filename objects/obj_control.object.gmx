@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>time = 0
+            <string>width = 0
+height = 0
+time = 0
 global.settings = false
 rand = 0
 debug = false
@@ -65,7 +67,23 @@ debug = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if game_ended || game_paused{
+            <string>if (os_browser != browser_not_a_browser) {
+    if (browser_width &gt;= 600) &amp;&amp; (browser_height &gt;= 600) {
+        width = 600
+        height = 600
+    } else {
+        if (browser_width &lt;= browser_height){
+            width = browser_width 
+            height = browser_width
+        } else {
+            width = browser_height 
+            height = browser_height
+        }
+    }
+    window_set_size(width,height)
+}
+
+if game_ended || game_paused{
     if !instance_exists(obj_restart){
         instance_create(720, 800, obj_restart)
     }
@@ -577,9 +595,25 @@ ini_close()
           <argument>
             <kind>1</kind>
             <string>global.hs = 0
+if os_browser = !browser_not_a_browser {
+    if (browser_width &gt;= 600) &amp;&amp; (browser_height &gt;= 600) {
+        width = 600
+        height = 600
+    } else {
+        if (browser_width &lt;= browser_height){
+            width = browser_width 
+            height = browser_width
+        } else {
+            width = browser_height 
+            height = browser_height
+        }
+    }
+    window_set_size(width,height)
+}
 
 ini_open("userdata.ini")
 global.hs = ini_read_real("save","highscore",global.hs)
+global.res = ini_read_real("settings","res",global.hs)
 ini_close()
 </string>
           </argument>
@@ -624,7 +658,7 @@ draw_sprite(spr_settings, 0, 1400, 40)
 va = 80
 if debug{
     draw_set_colour(c_white)
-    draw_text(0, 14*va, "Next block = " + string(next_block))
+    draw_text(0, 14*va, "Next block = " + string(browser_width) + string(browser_height))
     draw_text(0, 15*va, "FPS = " + string(fps))
     draw_text(0, 16*va, "Real FPS = " + string(fps_real))
     draw_text(0, 17*va, "room_speed = " + string(room_speed))

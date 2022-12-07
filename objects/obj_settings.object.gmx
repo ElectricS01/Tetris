@@ -56,6 +56,8 @@
     draw_set_alpha(.8)
     draw_set_colour(make_colour_rgb(40, 42, 43))
     draw_rectangle(160, 160, 1280, 1280, false)
+    draw_set_colour(c_white)
+    draw_rectangle(160, 160, 1280, 1280, true)
     
     
     if(device_mouse_x(0) &gt; 160 &amp;&amp; device_mouse_x(0) &lt; 240 &amp;&amp; device_mouse_y(0) &gt; 160 &amp;&amp; device_mouse_y(0) &lt; 240){
@@ -67,6 +69,11 @@
     }
     
     draw_sprite(spr_x, 0, 168, 168)
+    
+    draw_set_colour(make_colour_rgb(40, 42, 43))
+    draw_rectangle(200,260,1240,340,0)
+    draw_set_colour(c_white)
+    draw_rectangle(200,260,1240,340,1)
 }
 </string>
           </argument>
