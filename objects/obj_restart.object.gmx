@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if obj_control.game_ended = true room_restart() else obj_control.game_paused = false
+            <string>if obj_control.game_ended = true {
+    room_restart() 
+} else {
+    obj_control.game_paused = false
+}
 </string>
           </argument>
         </arguments>

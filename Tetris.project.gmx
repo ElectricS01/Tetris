@@ -10,15 +10,18 @@
     <sprite>sprites\spr_settings</sprite>
     <sprite>sprites\spr_x</sprite>
     <sprite>sprites\spr_restart</sprite>
+    <sprite>sprites\spr_difficulty</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <fonts name="fonts">
     <font>fonts\fnt_header</font>
+    <font>fonts\fnt_small</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_control</object>
     <object>objects\obj_restart</object>
+    <object>objects\obj_difficulty</object>
     <object>objects\obj_block</object>
     <object>objects\obj_brick</object>
     <object>objects\obj_settings</object>
