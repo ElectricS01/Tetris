@@ -87,11 +87,11 @@ if game_ended || game_paused{
     if !instance_exists(obj_restart){
         instance_create(720, 800, obj_restart)
     }
-} else {
+} else if global.game_started {
     if instance_exists(obj_restart){
         instance_destroy(obj_restart)
     }
-    time += 1
+        time += 1
     
     if instance_exists(obj_block){
         
@@ -150,7 +150,7 @@ if game_ended || game_paused{
             time = 0
         }
         
-        if time &gt;= difficulty{
+        if time &gt;= global.difficulty{
             time = 0
             if (inst0.y &lt; 1232 &amp;&amp; inst1.y &lt; 1232 &amp;&amp; inst2.y &lt; 1232 &amp;&amp; inst3.y &lt; 1232 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+64, obj_brick)){
                 inst0.y += 64
@@ -501,11 +501,14 @@ if game_ended || game_paused{
         score = 0
         
         ini_open("userdata.ini")
-        ini_write_real("save","highscore",global.hs)
+        ini_write_real("save","highscore_easy",global.hse)
+        ini_write_real("save","highscore_medium",global.hsm)
+        ini_write_real("save","highscore_hard",global.hsh)
+        ini_write_real("save","highscore_god",global.hsg)
         ini_close()
     }
     
-    if time = difficulty-1{
+    if time = global.difficulty-1{
         if instance_exists(inst0) &amp;&amp; instance_exists(inst1) &amp;&amp; instance_exists(inst2) &amp;&amp; instance_exists(inst3){
             if (inst0.y &gt; 1168 || inst1.y &gt; 1168 || inst2.y &gt; 1168 || inst3.y &gt; 1168 || position_meeting(inst0.x, inst0.y+64, obj_brick) || position_meeting(inst1.x, inst1.y+64, obj_brick) || position_meeting(inst2.x, inst2.y+64, obj_brick) || position_meeting(inst3.x, inst3.y+64, obj_brick)){
                 inst4 = instance_create(inst0.x, inst0.y, obj_brick)
@@ -542,8 +545,22 @@ if game_ended || game_paused{
                     }
                 }
                 score += 1
-                if score + 1 &gt;= global.hs{
-                global.hs = score
+                if global.difficulty = 60 {
+                    if score + 1 &gt;= global.hse{
+                        global.hse = score
+                    }
+                } else if global.difficulty = 30 {
+                    if score + 1 &gt;= global.hsm{
+                        global.hsm = score
+                    }
+                }else if global.difficulty = 15 {
+                    if score + 1 &gt;= global.hsh{
+                        global.hsh = score
+                    }
+                }else if global.difficulty = 5 {
+                    if score + 1 &gt;= global.hsg{
+                        global.hsg = score
+                    }
                 }
             }
             var21 -= 64
@@ -581,29 +598,6 @@ if game_ended || game_paused{
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>difficulty = global.difficulty
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="7" enumb="3">
       <action>
         <libid>1</libid>
@@ -622,7 +616,10 @@ if game_ended || game_paused{
           <argument>
             <kind>1</kind>
             <string>ini_open("userdata.ini")
-ini_write_real("save","highscore",global.hs)
+ini_write_real("save","highscore_easy",global.hse)
+ini_write_real("save","highscore_medium",global.hsm)
+ini_write_real("save","highscore_hard",global.hsh)
+ini_write_real("save","highscore_god",global.hsg)
 ini_close()
 </string>
           </argument>
@@ -646,8 +643,12 @@ ini_close()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.hs = 0
+            <string>global.hse = 0
+global.hsm = 0
+global.hsh = 0
+global.hsg = 0
 global.difficulty = 30
+global.game_started = false
 if os_browser = !browser_not_a_browser {
     if (browser_width &gt;= 600) &amp;&amp; (browser_height &gt;= 600) {
         width = 600
@@ -665,9 +666,12 @@ if os_browser = !browser_not_a_browser {
 }
 
 ini_open("userdata.ini")
-global.hs = ini_read_real("save","highscore",global.hs)
-global.res = ini_read_real("settings","res",global.hs)
+global.hse = ini_read_real("save","highscore_easy",global.hse)
+global.hsm = ini_read_real("save","highscore_medium",global.hsm)
+global.hsh = ini_read_real("save","highscore_hard",global.hsh)
+global.hsg = ini_read_real("save","highscore_god",global.hsg)
 ini_close()
+global.difficulty_select = true
 </string>
           </argument>
         </arguments>
@@ -697,7 +701,15 @@ draw_set_font(fnt_header)
 draw_set_colour(c_white)
 draw_text(10,10,"Tetris By Electric S01")
 draw_text(30,1320,"Rows:" + string(score))
-draw_text(750,1320 ,"High Score:" + string(global.hs))
+if global.difficulty = 60 {
+    draw_text(750,1320 ,"High Score:" + string(global.hse))
+} else if global.difficulty = 30 {
+    draw_text(750,1320 ,"High Score:" + string(global.hsm))
+}else if global.difficulty = 15 {
+    draw_text(750,1320 ,"High Score:" + string(global.hsh))
+}else if global.difficulty = 5 {
+    draw_text(750,1320 ,"High Score:" + string(global.hsg))
+}
 
 
 draw_set_colour(make_colour_rgb(25, 25, 25))

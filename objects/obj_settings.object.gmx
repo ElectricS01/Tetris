@@ -8,6 +8,32 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hover_1 = false
+hover_2 = false
+hover_3 = false
+hover_4 = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="4">
       <action>
         <libid>1</libid>
@@ -25,15 +51,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.settings { 
-    global.settings = false
-    if instance_exists(obj_difficulty) {
-        instance_destroy(obj_difficulty)
-    }
-} else {
-    global.settings = true
-    if !instance_exists(obj_difficulty) {
-        instance_create(240,260,obj_difficulty)
+            <string>if global.game_started {
+    if global.settings { 
+        global.settings = false
+    } else {
+        global.settings = true
     }
 }
 </string>
@@ -58,26 +80,219 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.settings = true{
+            <string>if global.settings {
     draw_set_alpha(.8)
     draw_set_colour(make_colour_rgb(40, 42, 43))
     draw_rectangle(160, 160, 1280, 1280, false)
     draw_set_colour(c_white)
     draw_rectangle(160, 160, 1280, 1280, true)
     
-    
     if(device_mouse_x(0) &gt; 160 &amp;&amp; device_mouse_x(0) &lt; 240 &amp;&amp; device_mouse_y(0) &gt; 160 &amp;&amp; device_mouse_y(0) &lt; 240){
         draw_set_colour(make_colour_rgb(122, 126, 133))
         draw_rectangle(160, 160, 240, 240, false)
         if(device_mouse_check_button(0, mb_left)){
             global.settings = false
-            if instance_exists(obj_difficulty) {
-                instance_destroy(obj_difficulty)
-            }
         }
     }
     
+    if(device_mouse_x(0) &gt; 240 &amp;&amp; device_mouse_x(0) &lt; 480 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
+        hover_1 = true
+        if(device_mouse_check_button(0, mb_left)){
+            room_goto(rm_game)
+            global.difficulty = 60 
+        }
+    } else {
+        hover_1 = false
+    }
+    
+    
+    if hover_1 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(240, 320, 480, 400, false)
+    draw_set_colour(c_white)
+    draw_rectangle(240, 320, 480, 400, true)
+    
+    if(device_mouse_x(0) &gt; 480 &amp;&amp; device_mouse_x(0) &lt; 720 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
+        hover_2 = true
+        if(device_mouse_check_button(0, mb_left)){
+            room_goto(rm_game)
+            global.difficulty = 30 
+        }
+    } else {
+        hover_2 = false
+    }
+    
+    
+    if hover_2 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(480, 320, 720, 400, false)
+    draw_set_colour(c_white)
+    draw_rectangle(480, 320, 720, 400, true)
+    
+    if(device_mouse_x(0) &gt; 720 &amp;&amp; device_mouse_x(0) &lt; 960 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
+        hover_3 = true
+        if(device_mouse_check_button(0, mb_left)){
+            room_goto(rm_game)
+            global.difficulty = 15 
+        }
+    } else {
+        hover_3 = false
+    }
+    
+    
+    if hover_3 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(720, 320, 960, 400, false)
+    draw_set_colour(c_white)
+    draw_rectangle(720, 320, 960, 400, true)
+    
+    if(device_mouse_x(0) &gt; 960 &amp;&amp; device_mouse_x(0) &lt; 1200 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
+        hover_4 = true
+        if(device_mouse_check_button(0, mb_left)){
+            room_goto(rm_game)
+            global.difficulty = 5 
+        }
+    } else {
+        hover_4 = false
+    }
+    
+    
+    if hover_4 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(960, 320, 1200, 400, false)
+    draw_set_colour(c_white)
+    draw_rectangle(960, 320, 1200, 400, true)
+    
+    draw_set_halign(fa_center)
+    draw_set_valign(fa_center)
+    draw_set_font(fnt_small)
+    draw_set_colour(c_white)
+    
+    draw_text(720,240,"SELECT DIFFICULTY")
+    draw_text(360,360,"EASY")
+    draw_text(600,360,"MEDIUM")
+    draw_text(840,360,"HARD")
+    draw_text(1080,360,"GOD")
+    
     draw_sprite(spr_x, 0, 168, 168)
+}
+if !global.game_started {
+    draw_set_alpha(.8)
+    draw_set_colour(make_colour_rgb(40, 42, 43))
+    draw_rectangle(160, 540, 1280, 860, false)
+    draw_set_colour(c_white)
+    draw_rectangle(160, 540, 1280, 860, true)
+    
+    if(device_mouse_x(0) &gt; 240 &amp;&amp; device_mouse_x(0) &lt; 480 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
+        hover_1 = true
+        if(device_mouse_check_button(0, mb_left)){
+            global.game_started = true
+            global.difficulty = 60 
+        }
+    } else {
+        hover_1 = false
+    }
+    
+    
+    if hover_1 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(240, 700, 480, 780, false)
+    draw_set_colour(c_white)
+    draw_rectangle(240, 700, 480, 780, true)
+    
+    if(device_mouse_x(0) &gt; 480 &amp;&amp; device_mouse_x(0) &lt; 720 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
+        hover_2 = true
+        if(device_mouse_check_button(0, mb_left)){
+            global.game_started = true
+            global.difficulty = 30 
+        }
+    } else {
+        hover_2 = false
+    }
+    
+    
+    if hover_2 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(480, 700, 720, 780, false)
+    draw_set_colour(c_white)
+    draw_rectangle(480, 700, 720, 780, true)
+    
+    if(device_mouse_x(0) &gt; 720 &amp;&amp; device_mouse_x(0) &lt; 960 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
+        hover_3 = true
+        if(device_mouse_check_button(0, mb_left)){
+            global.game_started = true
+            global.difficulty = 15 
+        }
+    } else {
+        hover_3 = false
+    }
+    
+    
+    if hover_3 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(720, 700, 960, 780, false)
+    draw_set_colour(c_white)
+    draw_rectangle(720, 700, 960, 780, true)
+    
+    if(device_mouse_x(0) &gt; 960 &amp;&amp; device_mouse_x(0) &lt; 1200 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
+        hover_4 = true
+        if(device_mouse_check_button(0, mb_left)){
+            global.game_started = true
+            global.difficulty = 5 
+        }
+    } else {
+        hover_4 = false
+    }
+    
+    
+    if hover_4 {
+        draw_set_colour(make_colour_rgb(122, 126, 133))
+    } else {
+        draw_set_colour(make_colour_rgb(40, 42, 43))
+    }
+    
+    draw_rectangle(960, 700, 1200, 780, false)
+    draw_set_colour(c_white)
+    draw_rectangle(960, 700, 1200, 780, true)
+    
+    draw_set_halign(fa_center)
+    draw_set_valign(fa_center)
+    draw_set_font(fnt_small)
+    draw_set_colour(c_white)
+    
+    draw_text(720,620,"SELECT DIFFICULTY")
+    draw_text(360,740,"EASY")
+    draw_text(600,740,"MEDIUM")
+    draw_text(840,740,"HARD")
+    draw_text(1080,740,"GOD")
 }
 </string>
           </argument>

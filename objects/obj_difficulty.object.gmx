@@ -81,12 +81,16 @@
             <kind>1</kind>
             <string>if global.difficulty = 60 {
     global.difficulty = 30
+    room_goto(rm_game)
 } else if global.difficulty = 30 {
     global.difficulty = 15
+    room_goto(rm_game)
 } else if global.difficulty = 15 {
     global.difficulty = 5
+    room_goto(rm_game)
 } else if global.difficulty = 5 {
     global.difficulty = 60
+    room_goto(rm_game)
 }
 </string>
           </argument>
