@@ -95,7 +95,7 @@ if game_ended || game_paused{
     
     if instance_exists(obj_block){
         
-        if keyboard_check_pressed(vk_right){
+        if keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord('D')){
             if !(position_meeting(inst0.x+64, inst0.y, obj_brick) || position_meeting(inst1.x+64, inst1.y, obj_brick) || position_meeting(inst2.x+64, inst2.y, obj_brick) || position_meeting(inst3.x+64, inst3.y, obj_brick)){
                 if (inst0.x &lt; 976 &amp;&amp; inst1.x &lt; 976 &amp;&amp; inst2.x &lt; 976 &amp;&amp; inst3.x &lt; 976){
                     inst0.x += 64
@@ -106,7 +106,7 @@ if game_ended || game_paused{
             }
         }
         
-        if keyboard_check_pressed(vk_left){
+        if keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord('A')){
             if !(position_meeting(inst0.x-64, inst0.y, obj_brick) || position_meeting(inst1.x-64, inst1.y, obj_brick) || position_meeting(inst2.x-64, inst2.y, obj_brick) || position_meeting(inst3.x-64, inst3.y, obj_brick)){
                 if (inst0.x &gt; 400 &amp;&amp; inst1.x &gt; 400 &amp;&amp; inst2.x &gt; 400 &amp;&amp; inst3.x &gt; 400){
                     inst0.x -= 64
@@ -117,7 +117,7 @@ if game_ended || game_paused{
             }
         }
         
-        if keyboard_check_pressed(vk_down){
+        if keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord('S')){
             if instance_exists(inst0) &amp;&amp; instance_exists(inst1) &amp;&amp; instance_exists(inst2) &amp;&amp; instance_exists(inst3){
                 if (inst0.y &lt;= 1168 &amp;&amp; inst1.y &lt;= 1168 &amp;&amp; inst2.y &lt;= 1168 &amp;&amp; inst3.y &lt;= 1168 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+64, obj_brick)){
                     inst0.y += 64
@@ -160,7 +160,7 @@ if game_ended || game_paused{
             }
         }
         
-        if keyboard_check_pressed(vk_up){
+        if keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord('W')){
             if type = 0{
                 if rotation = 0{
                     if (inst0.y &lt;= 1104 &amp;&amp; !position_meeting(inst0.x-128, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+128, obj_brick)){
@@ -220,9 +220,84 @@ if game_ended || game_paused{
                 
             if type = 2{
                 if rotation = 0{
-                    if (!position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y, obj_brick)){
+                    if (inst3.y &lt;= 1168 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y, obj_brick)){
                         inst0.y += 64
                         inst2.x += 64 inst2.y += 64
+                        inst3.x += 64
+                        rotation = 1
+                        exit
+                    } else if (inst3.y = 1232 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y, obj_brick)){
+                        inst1.y -= 64
+                        inst2.x += 64
+                        inst3.x += 64 inst3.y -= 64
+                        rotation = 1
+                        exit
+                    }
+                }
+                
+                if rotation = 1{
+                    if (inst3.x &gt;= 464 &amp;&amp; !position_meeting(inst0.x, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y, obj_brick)){
+                        inst0.y -= 64
+                        inst2.x -= 64 inst2.y -= 64
+                        inst3.x -= 64
+                        rotation = 0
+                        exit
+                    } else if (inst3.x = 400 &amp;&amp; !position_meeting(inst0.x, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y, obj_brick)){
+                        inst0.y -= 64 inst0.x += 64
+                        inst1.x += 64
+                        inst2.y -= 64
+                        rotation = 0
+                        exit
+                    }
+                }
+            }
+                
+            if type = 3{
+                if rotation = 0{
+                    if (inst3.y &lt;= 1104 &amp;&amp; !position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
+                        inst0.x -= 64 inst0.y += 64
+                        inst2.x += 64 inst2.y += 64
+                        inst3.x += 128
+                        rotation = 1
+                        exit
+                    } else if (inst3.y = 1168 &amp;&amp; !position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
+                        inst0.x -= 64
+                        inst1.y -= 64
+                        inst2.x += 64
+                        inst3.x += 128 inst3.y -= 64
+                        rotation = 1
+                        exit
+                    }
+                }
+                
+                if rotation = 1{
+                    if (inst3.x &gt;= 528 &amp;&amp; !position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y, obj_brick)){
+                        inst0.x += 64 inst0.y -= 64
+                        inst2.x -= 64 inst2.y -= 64
+                        inst3.x -= 128
+                        rotation = 0
+                        exit
+                    } else if (inst3.x = 464 &amp;&amp; !position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y, obj_brick)){
+                        inst0.x += 128 inst0.y -= 64
+                        inst1.x += 64
+                        inst2.y -= 64
+                        inst3.x -= 64
+                        rotation = 0
+                        exit
+                    }
+                }
+            }
+                
+            if type = 4{
+                if rotation = 0{
+                    if (inst0.y &lt;= 1168 &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick)){
+                        inst3.x += 64 inst3.y += 64
+                        rotation = 1
+                        exit
+                    } else if (inst0.y == 1232 &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick)){
+                        inst0.y -= 64
+                        inst1.y -= 64
+                        inst2.y -= 64
                         inst3.x += 64
                         rotation = 1
                         exit
@@ -230,48 +305,15 @@ if game_ended || game_paused{
                 }
                 
                 if rotation = 1{
-                    if (!position_meeting(inst0.x, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y, obj_brick)){
-                        inst0.y -= 64
-                        inst2.x -= 64 inst2.y -= 64
-                        inst3.x -= 64
-                        rotation = 0
-                    }
-                }
-            }
-                
-            if type = 3{
-                if rotation = 0{
-                if (!position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
-                inst0.x -= 64 inst0.y += 64
-                inst2.x += 64 inst2.y += 64
-                inst3.x += 128
-                rotation = 1
-                exit
-                }
-                }
-                
-                if rotation = 1{
-                    if (!position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y, obj_brick)){
-                        inst0.x += 64 inst0.y -= 64
-                        inst2.x -= 64 inst2.y -= 64
-                        inst3.x -= 128
-                        rotation = 0
-                    }
-                }
-            }
-                
-            if type = 4{
-                if rotation = 0{
-                    if (!position_meeting(inst2.x, inst2.y+64, obj_brick)){
-                        inst3.x += 64 inst3.y += 64
-                        rotation = 1
-                        exit
-                    }
-                }
-                
-                if rotation = 1{
-                    if (!position_meeting(inst2.x-64, inst2.y, obj_brick)){
+                    if (inst1.x &gt;= 464 &amp;&amp; !position_meeting(inst2.x-64, inst2.y, obj_brick)){
                         inst1.x -= 64 inst1.y += 64
+                        rotation = 2
+                        exit
+                    } else if (inst1.x = 400 &amp;&amp; !position_meeting(inst2.x-64, inst2.y, obj_brick)){
+                        inst0.x += 64 
+                        inst1.y += 64
+                        inst2.x += 64 
+                        inst3.x += 64 
                         rotation = 2
                         exit
                     }
@@ -286,10 +328,16 @@ if game_ended || game_paused{
                 }
                 
                 if rotation = 3{
-                    if (!position_meeting(inst2.x+64, inst2.y, obj_brick)){
-                        inst3.x -= 64 inst3.y -= 64
-                        inst1.x += 64 inst1.y -= 64
+                    if (inst0.x &lt;= 912 &amp;&amp; !position_meeting(inst2.x+64, inst2.y, obj_brick)){
                         inst0.x += 64 inst0.y += 64
+                        inst1.x += 64 inst1.y -= 64
+                        inst3.x -= 64 inst3.y -= 64
+                        rotation = 0
+                    } else if (inst0.x = 976 &amp;&amp; !position_meeting(inst2.x+64, inst2.y, obj_brick)){
+                        inst0.y += 64
+                        inst1.y -= 64
+                        inst2.x -= 64
+                        inst3.x -= 128 inst3.y -= 64
                         rotation = 0
                     }
                 }
@@ -545,15 +593,15 @@ if game_ended || game_paused{
                     }
                 }
                 score += 1
-                if global.difficulty = 60 {
+                if global.difficulty = 30 {
                     if score + 1 &gt;= global.hse{
                         global.hse = score
                     }
-                } else if global.difficulty = 30 {
+                } else if global.difficulty = 20 {
                     if score + 1 &gt;= global.hsm{
                         global.hsm = score
                     }
-                }else if global.difficulty = 15 {
+                }else if global.difficulty = 10 {
                     if score + 1 &gt;= global.hsh{
                         global.hsh = score
                     }
@@ -701,11 +749,11 @@ draw_set_font(fnt_header)
 draw_set_colour(c_white)
 draw_text(10,10,"Tetris By Electric S01")
 draw_text(30,1320,"Rows:" + string(score))
-if global.difficulty = 60 {
+if global.difficulty = 30 {
     draw_text(750,1320 ,"High Score:" + string(global.hse))
-} else if global.difficulty = 30 {
+} else if global.difficulty = 20 {
     draw_text(750,1320 ,"High Score:" + string(global.hsm))
-}else if global.difficulty = 15 {
+}else if global.difficulty = 10 {
     draw_text(750,1320 ,"High Score:" + string(global.hsh))
 }else if global.difficulty = 5 {
     draw_text(750,1320 ,"High Score:" + string(global.hsg))
@@ -724,7 +772,8 @@ draw_sprite(spr_settings, 0, 1400, 40)
 va = 80
 if debug{
     draw_set_colour(c_white)
-    draw_text(0, 14*va, "Next block = " + string(browser_width) + string(browser_height))
+    draw_text(0, 13*va, "View port = " + string(browser_width) + string(browser_height))
+    draw_text(0, 14*va, "Next block = " + string(next_block))
     draw_text(0, 15*va, "FPS = " + string(fps))
     draw_text(0, 16*va, "Real FPS = " + string(fps_real))
     draw_text(0, 17*va, "room_speed = " + string(room_speed))

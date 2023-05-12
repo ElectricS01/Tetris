@@ -99,7 +99,7 @@ hover_4 = false
         hover_1 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
-            global.difficulty = 60 
+            global.difficulty = 30 
         }
     } else {
         hover_1 = false
@@ -120,7 +120,7 @@ hover_4 = false
         hover_2 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
-            global.difficulty = 30 
+            global.difficulty = 20 
         }
     } else {
         hover_2 = false
@@ -141,7 +141,7 @@ hover_4 = false
         hover_3 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
-            global.difficulty = 15 
+            global.difficulty = 10 
         }
     } else {
         hover_3 = false
@@ -203,7 +203,7 @@ if !global.game_started {
         hover_1 = true
         if(device_mouse_check_button(0, mb_left)){
             global.game_started = true
-            global.difficulty = 60 
+            global.difficulty = 30 
         }
     } else {
         hover_1 = false
@@ -224,7 +224,7 @@ if !global.game_started {
         hover_2 = true
         if(device_mouse_check_button(0, mb_left)){
             global.game_started = true
-            global.difficulty = 30 
+            global.difficulty = 20 
         }
     } else {
         hover_2 = false
@@ -245,7 +245,7 @@ if !global.game_started {
         hover_3 = true
         if(device_mouse_check_button(0, mb_left)){
             global.game_started = true
-            global.difficulty = 15 
+            global.difficulty = 10 
         }
     } else {
         hover_3 = false
