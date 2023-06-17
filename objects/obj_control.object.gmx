@@ -45,6 +45,7 @@ var21 = 0
 var22 = 0
 
 debug = false
+bonus = 0
 </string>
           </argument>
         </arguments>
@@ -355,10 +356,17 @@ if game_ended || game_paused{
                 }
                 
                 if rotation = 1{
-                    if (!position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
+                    if (inst1.x &gt;= 464 &amp;&amp; !position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
                         inst0.x -= 128
                         inst1.x -= 64 inst1.y -= 64
                         inst3.x += 64 inst3.y += 64
+                        rotation = 2
+                        exit
+                    } else {
+                        inst0.x -= 64
+                        inst1.y -= 64
+                        inst2.x += 64
+                        inst3.x += 128 inst3.y += 64
                         rotation = 2
                         exit
                     }
@@ -375,10 +383,16 @@ if game_ended || game_paused{
                 }
                 
                 if rotation = 3{
-                    if (!position_meeting(inst0.x+128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-64, obj_brick)){
+                    if (inst1.x &lt;= 912 &amp;&amp; !position_meeting(inst0.x+128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-64, obj_brick)){
                         inst0.x += 128
                         inst1.x += 64 inst1.y += 64
                         inst3.x -= 64 inst3.y -= 64
+                        rotation = 0
+                    } else {
+                        inst0.x += 64
+                        inst1.y += 64
+                        inst2.x -= 64
+                        inst3.x -= 128 inst3.y -= 64
                         rotation = 0
                     }
                 }
@@ -725,6 +739,34 @@ global.difficulty_select = true
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if bonus {
+    draw_set_valign(fa_center)
+    draw_set_halign(fa_center)
+    draw_text_transformed(450,180,"Ultra-Nightmare", bonus, bonus,0)
+    bonus -= delta_time/1000000
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -777,14 +819,13 @@ if debug{
     draw_text(0, 15*va, "FPS = " + string(fps))
     draw_text(0, 16*va, "Real FPS = " + string(fps_real))
     draw_text(0, 17*va, "room_speed = " + string(room_speed))
+    if instance_exists(obj_block){
+        draw_text(inst0.x,inst0.y,"1")
+        draw_text(inst1.x,inst1.y,"2")
+        draw_text(inst2.x,inst2.y,"3")
+        draw_text(inst3.x,inst3.y,"4")
+    }
 }
-
-/*if instance_exists(obj_block){
-draw_text(inst0.x,inst0.y,"1")
-draw_text(inst1.x,inst1.y,"2")
-draw_text(inst2.x,inst2.y,"3")
-draw_text(inst3.x,inst3.y,"4")
-}*/
 
 if next_block = 0{
     draw_sprite(spr_block, 0, 1312, 656)
@@ -829,6 +870,30 @@ if next_block = 6{
     draw_sprite(spr_block, 6, 1120, 656)
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="114">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.difficulty = 3
+bonus = 2
 </string>
           </argument>
         </arguments>
