@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\spr_block</sprite>
     <sprite>sprites\spr_settings</sprite>
+    <sprite>sprites\spr_lines</sprite>
     <sprite>sprites\spr_x</sprite>
     <sprite>sprites\spr_restart</sprite>
   </sprites>
@@ -23,6 +24,7 @@
     <object>objects\obj_block</object>
     <object>objects\obj_brick</object>
     <object>objects\obj_settings</object>
+    <object>objects\obj_lines</object>
     <object>objects\obj_coverui</object>
   </objects>
   <rooms name="rooms">

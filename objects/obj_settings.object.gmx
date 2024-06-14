@@ -29,6 +29,53 @@
 hover_2 = false
 hover_3 = false
 hover_4 = false
+hover = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hover = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hover = true
 </string>
           </argument>
         </arguments>
@@ -52,11 +99,7 @@ hover_4 = false
           <argument>
             <kind>1</kind>
             <string>if global.game_started {
-    if global.settings { 
-        global.settings = false
-    } else {
-        global.settings = true
-    }
+    global.settings = !global.settings
 }
 </string>
           </argument>
@@ -80,7 +123,16 @@ hover_4 = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.settings {
+            <string>draw_self()
+
+if hover {
+    draw_set_alpha(.8)
+    draw_set_colour(make_colour_rgb(122, 126, 133))
+    draw_rectangle(1364, 4, 1436, 76, false)
+    draw_self()
+}
+
+if global.settings {
     draw_set_alpha(.8)
     draw_set_colour(make_colour_rgb(40, 42, 43))
     draw_rectangle(160, 160, 1280, 1280, false)

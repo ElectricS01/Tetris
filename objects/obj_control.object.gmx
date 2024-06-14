@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>size = 0
 time = 0
+global.lines = false
 global.settings = false
 rand = 0
 debug = false
@@ -563,6 +564,7 @@ if game_ended || game_paused{
         ini_write_real("save","highscore_medium",global.hsm)
         ini_write_real("save","highscore_hard",global.hsh)
         ini_write_real("save","highscore_god",global.hsg)
+        ini_write_real("save","highscore_ultra",global.hsu)
         ini_close()
     }
     
@@ -608,16 +610,20 @@ if game_ended || game_paused{
                         global.hse = score
                     }
                 } else if global.difficulty = 20 {
-                    if score + 1 &gt;= global.hsm{
+                    if score + 1 &gt;= global.hsm {
                         global.hsm = score
                     }
-                }else if global.difficulty = 10 {
-                    if score + 1 &gt;= global.hsh{
+                } else if global.difficulty = 10 {
+                    if score + 1 &gt;= global.hsh {
                         global.hsh = score
                     }
-                }else if global.difficulty = 5 {
-                    if score + 1 &gt;= global.hsg{
+                } else if global.difficulty = 5 {
+                    if score + 1 &gt;= global.hsg {
                         global.hsg = score
+                    }
+                } else if global.difficulty = 3 {
+                    if score + 1 &gt;= global.hsu {
+                        global.hsu = score
                     }
                 }
             }
@@ -678,6 +684,7 @@ ini_write_real("save","highscore_easy",global.hse)
 ini_write_real("save","highscore_medium",global.hsm)
 ini_write_real("save","highscore_hard",global.hsh)
 ini_write_real("save","highscore_god",global.hsg)
+ini_write_real("save","highscore_ultra",global.hsu)
 ini_close()
 </string>
           </argument>
@@ -705,6 +712,7 @@ ini_close()
 global.hsm = 0
 global.hsh = 0
 global.hsg = 0
+global.hsu = 0
 global.difficulty = 30
 global.game_started = false
 if os_browser = !browser_not_a_browser {
@@ -725,6 +733,7 @@ global.hse = ini_read_real("save","highscore_easy",global.hse)
 global.hsm = ini_read_real("save","highscore_medium",global.hsm)
 global.hsh = ini_read_real("save","highscore_hard",global.hsh)
 global.hsg = ini_read_real("save","highscore_god",global.hsg)
+global.hsg = ini_read_real("save","highscore_ultra",global.hsu)
 ini_close()
 global.difficulty_select = true
 </string>
@@ -754,6 +763,16 @@ global.difficulty_select = true
     draw_set_halign(fa_center)
     draw_text_transformed(size/2,size/4,"Ultra-Nightmare", bonus, bonus,0)
     bonus -= delta_time/1000000
+}
+if global.difficulty = 3 {
+    if game_ended {
+        draw_set_alpha(0.4
+        )
+    } else {
+        draw_set_alpha(0.2)
+    }
+    draw_set_colour(c_red)
+    draw_rectangle(0, 0, 1600, 1600, false)
 }
 </string>
           </argument>
@@ -788,10 +807,12 @@ if global.difficulty = 30 {
     draw_text(750,1320 ,"High Score:" + string(global.hse))
 } else if global.difficulty = 20 {
     draw_text(750,1320 ,"High Score:" + string(global.hsm))
-}else if global.difficulty = 10 {
+} else if global.difficulty = 10 {
     draw_text(750,1320 ,"High Score:" + string(global.hsh))
-}else if global.difficulty = 5 {
+} else if global.difficulty = 5 {
     draw_text(750,1320 ,"High Score:" + string(global.hsg))
+} else if global.difficulty = 3 {
+    draw_text(750,1320 ,"High Score:" + string(global.hsu))
 }
 
 
@@ -799,10 +820,63 @@ draw_set_colour(make_colour_rgb(25, 25, 25))
 draw_rectangle(400,144,1040,1296, false)
 
 draw_set_colour(c_white)
-draw_rectangle(400,144,1040,1296, true)
+draw_rectangle(400, 144, 1040, 1296, true)
+draw_rectangle(399, 143, 1039, 1295, true)
 
-
-draw_sprite(spr_settings, 0, 1400, 40)
+if global.lines {
+    draw_line(463, 142, 463, 1294)
+    draw_line(527, 142, 527, 1294)
+    draw_line(591, 142, 591, 1294)
+    draw_line(655, 142, 655, 1294)
+    draw_line(719, 142, 719, 1294)
+    draw_line(783, 142, 783, 1294)
+    draw_line(847, 142, 847, 1294)
+    draw_line(911, 142, 911, 1294)
+    draw_line(975, 142, 975, 1294)
+    draw_line(464, 142, 464, 1294)
+    draw_line(528, 142, 528, 1294)
+    draw_line(592, 142, 592, 1294)
+    draw_line(656, 142, 656, 1294)
+    draw_line(720, 142, 720, 1294)
+    draw_line(784, 142, 784, 1294)
+    draw_line(848, 142, 848, 1294)
+    draw_line(912, 142, 912, 1294)
+    draw_line(976, 142, 976, 1294)
+    draw_line(401, 208, 1038, 208)
+    draw_line(401, 272, 1038, 272)
+    draw_line(401, 336, 1038, 336)
+    draw_line(401, 400, 1038, 400)
+    draw_line(401, 464, 1038, 464)
+    draw_line(401, 528, 1038, 528)
+    draw_line(401, 592, 1038, 592)
+    draw_line(401, 656, 1038, 656)
+    draw_line(401, 720, 1038, 720)
+    draw_line(401, 784, 1038, 784)
+    draw_line(401, 848, 1038, 848)
+    draw_line(401, 912, 1038, 912)
+    draw_line(401, 976, 1038, 976)
+    draw_line(401, 1040, 1038, 1040)
+    draw_line(401, 1104, 1038, 1104)
+    draw_line(401, 1168, 1038, 1168)
+    draw_line(401, 1232, 1038, 1232)
+    draw_line(401, 207, 1038, 207)
+    draw_line(401, 271, 1038, 271)
+    draw_line(401, 335, 1038, 335)
+    draw_line(401, 399, 1038, 399)
+    draw_line(401, 463, 1038, 463)
+    draw_line(401, 527, 1038, 527)
+    draw_line(401, 591, 1038, 591)
+    draw_line(401, 655, 1038, 655)
+    draw_line(401, 719, 1038, 719)
+    draw_line(401, 783, 1038, 783)
+    draw_line(401, 847, 1038, 847)
+    draw_line(401, 911, 1038, 911)
+    draw_line(401, 975, 1038, 975)
+    draw_line(401, 1039, 1038, 1039)
+    draw_line(401, 1103, 1038, 1103)
+    draw_line(401, 1167, 1038, 1167)
+    draw_line(401, 1231, 1038, 1231)
+}
 
 va = 80
 if debug{
