@@ -27,8 +27,6 @@
             <kind>1</kind>
             <string>size = 0
 time = 0
-global.lines = false
-global.settings = false
 rand = 0
 debug = false
 rotation = 0
@@ -44,7 +42,6 @@ while next_block &lt; 0{
 var21 = 0
 var22 = 0
 
-debug = false
 bonus = 0
 </string>
           </argument>
@@ -69,8 +66,8 @@ bonus = 0
           <argument>
             <kind>1</kind>
             <string>if (os_browser != browser_not_a_browser) {
-    if (browser_width &gt;= 600) &amp;&amp; (browser_height &gt;= 600) {
-        size = 600
+    if (browser_width &gt;= 720) &amp;&amp; (browser_height &gt;= 720) {
+        size = 720
     } else {
         if (browser_width &lt;= browser_height){
             size = browser_width 
@@ -713,11 +710,14 @@ global.hsm = 0
 global.hsh = 0
 global.hsg = 0
 global.hsu = 0
+global.lines = false
+global.settings = false
+global.debug = false
 global.difficulty = 30
 global.game_started = false
 if os_browser = !browser_not_a_browser {
-    if (browser_width &gt;= 600) &amp;&amp; (browser_height &gt;= 600) {
-        size = 600
+    if (browser_width &gt;= 720) &amp;&amp; (browser_height &gt;= 720) {
+        size = 720
     } else {
         if (browser_width &lt;= browser_height){
             size = browser_width 
