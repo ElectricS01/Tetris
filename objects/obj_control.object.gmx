@@ -70,9 +70,9 @@ bonus = 0
         size = 720
     } else {
         if (browser_width &lt;= browser_height){
-            size = browser_width 
+            size = browser_width
         } else {
-            size = browser_height 
+            size = browser_height
         }
     }
     window_set_size(size, size)
@@ -87,9 +87,9 @@ if game_ended || game_paused{
         instance_destroy(obj_restart)
     }
         time += 1
-    
+
     if instance_exists(obj_block){
-        
+
         if keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord('D')){
             if !(position_meeting(inst0.x+64, inst0.y, obj_brick) || position_meeting(inst1.x+64, inst1.y, obj_brick) || position_meeting(inst2.x+64, inst2.y, obj_brick) || position_meeting(inst3.x+64, inst3.y, obj_brick)){
                 if (inst0.x &lt; 976 &amp;&amp; inst1.x &lt; 976 &amp;&amp; inst2.x &lt; 976 &amp;&amp; inst3.x &lt; 976){
@@ -100,7 +100,7 @@ if game_ended || game_paused{
                 }
             }
         }
-        
+
         if keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord('A')){
             if !(position_meeting(inst0.x-64, inst0.y, obj_brick) || position_meeting(inst1.x-64, inst1.y, obj_brick) || position_meeting(inst2.x-64, inst2.y, obj_brick) || position_meeting(inst3.x-64, inst3.y, obj_brick)){
                 if (inst0.x &gt; 400 &amp;&amp; inst1.x &gt; 400 &amp;&amp; inst2.x &gt; 400 &amp;&amp; inst3.x &gt; 400){
@@ -111,7 +111,7 @@ if game_ended || game_paused{
                 }
             }
         }
-        
+
         if keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord('S')){
             if instance_exists(inst0) &amp;&amp; instance_exists(inst1) &amp;&amp; instance_exists(inst2) &amp;&amp; instance_exists(inst3){
                 if (inst0.y &lt;= 1168 &amp;&amp; inst1.y &lt;= 1168 &amp;&amp; inst2.y &lt;= 1168 &amp;&amp; inst3.y &lt;= 1168 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+64, obj_brick)){
@@ -122,7 +122,7 @@ if game_ended || game_paused{
                 }
             }
         }
-        
+
         if keyboard_check_pressed(vk_space){
             while (inst0.y &lt;= 1168 &amp;&amp; inst1.y &lt;= 1168 &amp;&amp; inst2.y &lt;= 1168 &amp;&amp; inst3.y &lt;= 1168 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+64, obj_brick)){
                 inst0.y += 64
@@ -141,10 +141,10 @@ if game_ended || game_paused{
                 inst7.image_index = inst3.image_index
                 instance_destroy(obj_block)
             }
-            
+
             time = 0
         }
-        
+
         if time &gt;= global.difficulty{
             time = 0
             if (inst0.y &lt; 1232 &amp;&amp; inst1.y &lt; 1232 &amp;&amp; inst2.y &lt; 1232 &amp;&amp; inst3.y &lt; 1232 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+64, obj_brick)){
@@ -154,7 +154,7 @@ if game_ended || game_paused{
                 inst3.y += 64
             }
         }
-        
+
         if keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord('W')){
             if type = 0{
                 if rotation = 0{
@@ -180,7 +180,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-            
+
                 if rotation = 1{
                     if (inst0.x &gt;= 464 &amp;&amp; inst0.x &lt;= 848 &amp;&amp; !position_meeting(inst0.x+128, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-128, obj_brick)){
                         inst0.x += 128 inst0.y += 64
@@ -212,7 +212,7 @@ if game_ended || game_paused{
                     }
                 }
             }
-                
+
             if type = 2{
                 if rotation = 0{
                     if (inst3.y &lt;= 1168 &amp;&amp; !position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y, obj_brick)){
@@ -229,7 +229,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 1{
                     if (inst3.x &gt;= 464 &amp;&amp; !position_meeting(inst0.x, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y, obj_brick)){
                         inst0.y -= 64
@@ -246,7 +246,7 @@ if game_ended || game_paused{
                     }
                 }
             }
-                
+
             if type = 3{
                 if rotation = 0{
                     if (inst3.y &lt;= 1104 &amp;&amp; !position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
@@ -264,7 +264,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 1{
                     if (inst3.x &gt;= 528 &amp;&amp; !position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y, obj_brick)){
                         inst0.x += 64 inst0.y -= 64
@@ -282,7 +282,7 @@ if game_ended || game_paused{
                     }
                 }
             }
-                
+
             if type = 4{
                 if rotation = 0{
                     if (inst0.y &lt;= 1168 &amp;&amp; !position_meeting(inst2.x, inst2.y+64, obj_brick)){
@@ -298,22 +298,22 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 1{
                     if (inst1.x &gt;= 464 &amp;&amp; !position_meeting(inst2.x-64, inst2.y, obj_brick)){
                         inst1.x -= 64 inst1.y += 64
                         rotation = 2
                         exit
                     } else if (inst1.x = 400 &amp;&amp; !position_meeting(inst2.x-64, inst2.y, obj_brick)){
-                        inst0.x += 64 
+                        inst0.x += 64
                         inst1.y += 64
-                        inst2.x += 64 
-                        inst3.x += 64 
+                        inst2.x += 64
+                        inst3.x += 64
                         rotation = 2
                         exit
                     }
                 }
-                
+
                 if rotation = 2{
                     if (!position_meeting(inst2.x, inst2.y+64, obj_brick)){
                         inst0.x -= 64 inst0.y -= 64
@@ -321,7 +321,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 3{
                     if (inst0.x &lt;= 912 &amp;&amp; !position_meeting(inst2.x+64, inst2.y, obj_brick)){
                         inst0.x += 64 inst0.y += 64
@@ -337,7 +337,7 @@ if game_ended || game_paused{
                     }
                 }
             }
-                
+
             if type = 5{
                 if rotation = 0{
                     if (!position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
@@ -348,7 +348,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 1{
                     if (inst1.x &gt;= 464 &amp;&amp; !position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
                         inst0.x -= 128
@@ -365,7 +365,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 2{
                     if (!position_meeting(inst0.x, inst0.y-128, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y+64, obj_brick)){
                         inst0.y -= 128
@@ -375,7 +375,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 3{
                     if (inst1.x &lt;= 912 &amp;&amp; !position_meeting(inst0.x+128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-64, obj_brick)){
                         inst0.x += 128
@@ -391,7 +391,7 @@ if game_ended || game_paused{
                     }
                 }
             }
-                
+
             if type = 6{
                 if rotation = 0{
                     if (!position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
@@ -402,7 +402,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 1{
                     if (!position_meeting(inst0.x-64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y+128, obj_brick)){
                         inst0.x -= 64 inst0.y -= 64
@@ -412,7 +412,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 2{
                     if (!position_meeting(inst0.x+64, inst0.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-128, inst3.y, obj_brick)){
                         inst0.x += 64 inst0.y -= 64
@@ -422,7 +422,7 @@ if game_ended || game_paused{
                         exit
                     }
                 }
-                
+
                 if rotation = 3{
                     if (!position_meeting(inst0.x+64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x-64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x, inst3.y-128, obj_brick)){
                         inst0.x += 64 inst0.y += 64
@@ -434,11 +434,11 @@ if game_ended || game_paused{
             }
         }
     }
-    
+
     while !instance_exists(obj_block){
         rotation = 0
         rand = next_block
-        
+
         if rand = 0{
             type = 0
             if (position_meeting(784, 144, obj_brick) || position_meeting(720, 144, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(592, 144, obj_brick)){
@@ -450,7 +450,7 @@ if game_ended || game_paused{
             inst2 = instance_create(656, 144, obj_block)
             inst3 = instance_create(592, 144, obj_block)
         }
-        
+
         if rand = 1{
             type = 1
             if (position_meeting(720, 144, obj_brick) || position_meeting(720, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick)){
@@ -466,7 +466,7 @@ if game_ended || game_paused{
             inst3 = instance_create(656, 208, obj_block)
             inst3.image_index = 1
         }
-        
+
         if rand = 2{
             type = 2
             if (position_meeting(720, 144, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
@@ -482,7 +482,7 @@ if game_ended || game_paused{
             inst3 = instance_create(592, 208, obj_block)
             inst3.image_index = 2
         }
-        
+
         if rand = 3{
             type = 3
             if (position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(592, 144, obj_brick)){
@@ -498,7 +498,7 @@ if game_ended || game_paused{
             inst3 = instance_create(592, 144, obj_block)
             inst3.image_index = 3
         }
-        
+
         if rand = 4{
             type = 4
             if (position_meeting(720, 208, obj_brick) || position_meeting(656, 144, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
@@ -514,7 +514,7 @@ if game_ended || game_paused{
             inst3 = instance_create(592, 208, obj_block)
             inst3.image_index = 4
             }
-        
+
         if rand = 5{
             type = 5
             if (position_meeting(720, 144, obj_brick) || position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick)){
@@ -530,7 +530,7 @@ if game_ended || game_paused{
             inst3 = instance_create(592, 208, obj_block)
             inst3.image_index = 5
         }
-        
+
         if rand = 6{
             type = 6
             if (position_meeting(720, 208, obj_brick) || position_meeting(656, 208, obj_brick) || position_meeting(592, 208, obj_brick) || position_meeting(592, 144, obj_brick)){
@@ -547,15 +547,15 @@ if game_ended || game_paused{
             inst3.image_index = 6
         }
         next_block = -1
-        
+
         while next_block &lt; 0{
             next_block = round(random(7)-1)
         }
     }
-    
+
     if game_ended = true {
         score = 0
-        
+
         ini_open("userdata.ini")
         ini_write_real("save","highscore_easy",global.hse)
         ini_write_real("save","highscore_medium",global.hsm)
@@ -564,7 +564,7 @@ if game_ended || game_paused{
         ini_write_real("save","highscore_ultra",global.hsu)
         ini_close()
     }
-    
+
     if time = global.difficulty-1{
         if instance_exists(inst0) &amp;&amp; instance_exists(inst1) &amp;&amp; instance_exists(inst2) &amp;&amp; instance_exists(inst3){
             if (inst0.y &gt; 1168 || inst1.y &gt; 1168 || inst2.y &gt; 1168 || inst3.y &gt; 1168 || position_meeting(inst0.x, inst0.y+64, obj_brick) || position_meeting(inst1.x, inst1.y+64, obj_brick) || position_meeting(inst2.x, inst2.y+64, obj_brick) || position_meeting(inst3.x, inst3.y+64, obj_brick)){
@@ -580,7 +580,7 @@ if game_ended || game_paused{
             }
         }
     }
-    
+
     var21 = 1232
     if obj_brick{
         while var21 &gt;= 144{
@@ -589,7 +589,7 @@ if game_ended || game_paused{
                     obj_control.var22 += 1
                 }
             }
-        
+
             if var22 = 10{
                 with obj_brick{
                     if y = obj_control.var21{
@@ -720,9 +720,9 @@ if os_browser = !browser_not_a_browser {
         size = 720
     } else {
         if (browser_width &lt;= browser_height){
-            size = browser_width 
+            size = browser_width
         } else {
-            size = browser_height 
+            size = browser_height
         }
     }
     window_set_size(size, size)
@@ -733,7 +733,7 @@ global.hse = ini_read_real("save","highscore_easy",global.hse)
 global.hsm = ini_read_real("save","highscore_medium",global.hsm)
 global.hsh = ini_read_real("save","highscore_hard",global.hsh)
 global.hsg = ini_read_real("save","highscore_god",global.hsg)
-global.hsg = ini_read_real("save","highscore_ultra",global.hsu)
+global.hsu = ini_read_real("save","highscore_ultra",global.hsu)
 ini_close()
 global.difficulty_select = true
 </string>

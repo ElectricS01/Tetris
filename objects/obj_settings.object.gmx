@@ -138,7 +138,7 @@ if global.settings {
     draw_rectangle(160, 160, 1280, 1280, false)
     draw_set_colour(c_white)
     draw_rectangle(160, 160, 1280, 1280, true)
-    
+
     if(device_mouse_x(0) &gt; 160 &amp;&amp; device_mouse_x(0) &lt; 240 &amp;&amp; device_mouse_y(0) &gt; 160 &amp;&amp; device_mouse_y(0) &lt; 240){
         draw_set_colour(make_colour_rgb(122, 126, 133))
         draw_rectangle(160, 160, 240, 240, false)
@@ -146,102 +146,102 @@ if global.settings {
             global.settings = false
         }
     }
-    
+
     if(device_mouse_x(0) &gt; 240 &amp;&amp; device_mouse_x(0) &lt; 480 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
         hover_1 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
-            global.difficulty = 30 
+            global.difficulty = 30
         }
     } else {
         hover_1 = false
     }
-    
-    
+
+
     if hover_1 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(240, 320, 480, 400, false)
     draw_set_colour(c_white)
     draw_rectangle(240, 320, 480, 400, true)
-    
+
     if(device_mouse_x(0) &gt; 480 &amp;&amp; device_mouse_x(0) &lt; 720 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
         hover_2 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
-            global.difficulty = 20 
+            global.difficulty = 20
         }
     } else {
         hover_2 = false
     }
-    
-    
+
+
     if hover_2 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(480, 320, 720, 400, false)
     draw_set_colour(c_white)
     draw_rectangle(480, 320, 720, 400, true)
-    
+
     if(device_mouse_x(0) &gt; 720 &amp;&amp; device_mouse_x(0) &lt; 960 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
         hover_3 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
-            global.difficulty = 10 
+            global.difficulty = 10
         }
     } else {
         hover_3 = false
     }
-    
-    
+
+
     if hover_3 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(720, 320, 960, 400, false)
     draw_set_colour(c_white)
     draw_rectangle(720, 320, 960, 400, true)
-    
+
     if(device_mouse_x(0) &gt; 960 &amp;&amp; device_mouse_x(0) &lt; 1200 &amp;&amp; device_mouse_y(0) &gt; 320 &amp;&amp; device_mouse_y(0) &lt; 400){
         hover_4 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
-            global.difficulty = 5 
+            global.difficulty = 5
         }
     } else {
         hover_4 = false
     }
-    
-    
+
+
     if hover_4 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(960, 320, 1200, 400, false)
     draw_set_colour(c_white)
     draw_rectangle(960, 320, 1200, 400, true)
-    
+
     draw_set_halign(fa_center)
     draw_set_valign(fa_center)
     draw_set_font(fnt_small)
     draw_set_colour(c_white)
-    
+
     draw_text(720,240,"SELECT DIFFICULTY")
     draw_text(360,360,"EASY")
     draw_text(600,360,"MEDIUM")
     draw_text(840,360,"HARD")
     draw_text(1080,360,"GOD")
-    
+
     draw_sprite(spr_x, 0, 168, 168)
 }
 if !global.game_started {
@@ -250,96 +250,96 @@ if !global.game_started {
     draw_rectangle(160, 540, 1280, 860, false)
     draw_set_colour(c_white)
     draw_rectangle(160, 540, 1280, 860, true)
-    
+
     if(device_mouse_x(0) &gt; 240 &amp;&amp; device_mouse_x(0) &lt; 480 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
         hover_1 = true
         if(device_mouse_check_button(0, mb_left)){
             global.game_started = true
-            global.difficulty = 30 
+            global.difficulty = 30
         }
     } else {
         hover_1 = false
     }
-    
-    
+
+
     if hover_1 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(240, 700, 480, 780, false)
     draw_set_colour(c_white)
     draw_rectangle(240, 700, 480, 780, true)
-    
+
     if(device_mouse_x(0) &gt; 480 &amp;&amp; device_mouse_x(0) &lt; 720 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
         hover_2 = true
         if(device_mouse_check_button(0, mb_left)){
             global.game_started = true
-            global.difficulty = 20 
+            global.difficulty = 20
         }
     } else {
         hover_2 = false
     }
-    
-    
+
+
     if hover_2 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(480, 700, 720, 780, false)
     draw_set_colour(c_white)
     draw_rectangle(480, 700, 720, 780, true)
-    
+
     if(device_mouse_x(0) &gt; 720 &amp;&amp; device_mouse_x(0) &lt; 960 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
         hover_3 = true
         if(device_mouse_check_button(0, mb_left)){
             global.game_started = true
-            global.difficulty = 10 
+            global.difficulty = 10
         }
     } else {
         hover_3 = false
     }
-    
-    
+
+
     if hover_3 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(720, 700, 960, 780, false)
     draw_set_colour(c_white)
     draw_rectangle(720, 700, 960, 780, true)
-    
+
     if(device_mouse_x(0) &gt; 960 &amp;&amp; device_mouse_x(0) &lt; 1200 &amp;&amp; device_mouse_y(0) &gt; 700 &amp;&amp; device_mouse_y(0) &lt; 780){
         hover_4 = true
         if(device_mouse_check_button(0, mb_left)){
             global.game_started = true
-            global.difficulty = 5 
+            global.difficulty = 5
         }
     } else {
         hover_4 = false
     }
-    
-    
+
+
     if hover_4 {
         draw_set_colour(make_colour_rgb(122, 126, 133))
     } else {
         draw_set_colour(make_colour_rgb(40, 42, 43))
     }
-    
+
     draw_rectangle(960, 700, 1200, 780, false)
     draw_set_colour(c_white)
     draw_rectangle(960, 700, 1200, 780, true)
-    
+
     draw_set_halign(fa_center)
     draw_set_valign(fa_center)
     draw_set_font(fnt_small)
     draw_set_colour(c_white)
-    
+
     draw_text(720,620,"SELECT DIFFICULTY")
     draw_text(360,740,"EASY")
     draw_text(600,740,"MEDIUM")
