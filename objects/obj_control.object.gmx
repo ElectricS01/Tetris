@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>size = 0
+            <string>size = 900
 time = 0
 rand = 0
 debug = false
@@ -39,10 +39,9 @@ while next_block &lt; 0{
     next_block = round(random(7)-1)
 }
 
-var21 = 0
-var22 = 0
+row = 0
+count = 0
 
-bonus = 0
 </string>
           </argument>
         </arguments>
@@ -339,18 +338,25 @@ if game_ended || game_paused{
             }
 
             if type = 5{
-                if rotation = 0{
-                    if (!position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y-64, obj_brick)){
+                if rotation = 0 {
+                    if (inst0.y &lt;= 1104 &amp;&amp; !position_meeting(inst0.x, inst0.y+128, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y-64, obj_brick)) {
                         inst0.y += 128
                         inst1.x -= 64 inst1.y += 64
                         inst3.x += 64 inst3.y -= 64
                         rotation = 1
                         exit
+                    } else if (!position_meeting(inst0.x, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y, obj_brick) &amp;&amp; !position_meeting(inst2.x, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y-128, obj_brick)) {
+                        inst0.y += 64
+                        inst1.x -= 64
+                        inst2.y -= 64
+                        inst3.x += 64 inst3.y -= 128
+                        rotation = 1
+                        exit
                     }
                 }
 
-                if rotation = 1{
-                    if (inst1.x &gt;= 464 &amp;&amp; !position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)){
+                if rotation = 1 {
+                    if (inst1.x &gt;= 464 &amp;&amp; !position_meeting(inst0.x-128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x-64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+64, inst3.y+64, obj_brick)) {
                         inst0.x -= 128
                         inst1.x -= 64 inst1.y -= 64
                         inst3.x += 64 inst3.y += 64
@@ -366,8 +372,8 @@ if game_ended || game_paused{
                     }
                 }
 
-                if rotation = 2{
-                    if (!position_meeting(inst0.x, inst0.y-128, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y+64, obj_brick)){
+                if rotation = 2 {
+                    if (!position_meeting(inst0.x, inst0.y-128, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y+64, obj_brick)) {
                         inst0.y -= 128
                         inst1.x += 64 inst1.y -= 64
                         inst3.x -= 64 inst3.y += 64
@@ -376,8 +382,9 @@ if game_ended || game_paused{
                     }
                 }
 
-                if rotation = 3{
-                    if (inst1.x &lt;= 912 &amp;&amp; !position_meeting(inst0.x+128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-64, obj_brick)){
+                if rotation = 3 {
+                    if (inst1.x &lt;= 912 &amp;&amp;
+                        !position_meeting(inst0.x+128, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x+64, inst1.y+64, obj_brick) &amp;&amp; !position_meeting(inst3.x-64, inst3.y-64, obj_brick)) {
                         inst0.x += 128
                         inst1.x += 64 inst1.y += 64
                         inst3.x -= 64 inst3.y -= 64
@@ -394,10 +401,17 @@ if game_ended || game_paused{
 
             if type = 6{
                 if rotation = 0{
-                    if (!position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
+                    if (inst0.y &lt;= 1104 &amp;&amp; !position_meeting(inst0.x-64, inst0.y+64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y-64, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y, obj_brick)){
                         inst0.x -= 64 inst0.y += 64
                         inst2.x += 64 inst2.y -= 64
                         inst3.x += 128
+                        rotation = 1
+                        exit
+                    } else if (!position_meeting(inst0.x-64, inst0.y, obj_brick) &amp;&amp; !position_meeting(inst1.x, inst1.y-64, obj_brick) &amp;&amp; !position_meeting(inst2.x+64, inst2.y-128, obj_brick) &amp;&amp; !position_meeting(inst3.x+128, inst3.y-64, obj_brick)){
+                        inst0.x -= 64
+                        inst1.y -= 64
+                        inst2.x += 64 inst2.y -= 128
+                        inst3.x += 128 inst3.y -= 64
                         rotation = 1
                         exit
                     }
@@ -548,9 +562,8 @@ if game_ended || game_paused{
         }
         next_block = -1
 
-        while next_block &lt; 0{
-            next_block = round(random(7)-1)
-        }
+        next_block = floor(random(7))
+
     }
 
     if game_ended = true {
@@ -581,23 +594,23 @@ if game_ended || game_paused{
         }
     }
 
-    var21 = 1232
-    if obj_brick{
-        while var21 &gt;= 144{
+    row = 1232
+    if obj_brick {
+        while row &gt;= 144 {
             with obj_brick{
-                if y = obj_control.var21{
-                    obj_control.var22 += 1
+                if y = obj_control.row {
+                    obj_control.count += 1
                 }
             }
 
-            if var22 = 10{
+            if count = 10 {
                 with obj_brick{
-                    if y = obj_control.var21{
+                    if y = obj_control.row {
                         instance_destroy()
                     }
                 }
-                with obj_brick{
-                    if y &lt;= obj_control.var21{
+                with obj_brick {
+                    if y &lt;= obj_control.row {
                         y += 64
                     }
                 }
@@ -623,9 +636,17 @@ if game_ended || game_paused{
                         global.hsu = score
                     }
                 }
+
+                ini_open("userdata.ini")
+                ini_write_real("save","highscore_easy",global.hse)
+                ini_write_real("save","highscore_medium",global.hsm)
+                ini_write_real("save","highscore_hard",global.hsh)
+                ini_write_real("save","highscore_god",global.hsg)
+                ini_write_real("save","highscore_ultra",global.hsu)
+                ini_close()
             }
-            var21 -= 64
-            var22 = 0
+            row -= 64
+            count = 0
         }
     }
 }
@@ -686,6 +707,7 @@ global.hsm = 0
 global.hsh = 0
 global.hsg = 0
 global.hsu = 0
+global.bonus = 0
 global.lines = false
 global.settings = false
 global.debug = false
@@ -734,11 +756,11 @@ global.difficulty_select = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if bonus {
+            <string>if global.bonus {
     draw_set_valign(fa_center)
     draw_set_halign(fa_center)
-    draw_text_transformed(size/2,size/4,"Ultra-Nightmare", bonus, bonus,0)
-    bonus -= delta_time/1000000
+    draw_text_transformed(size/2,size/4,"Ultra-Nightmare", global.bonus, global.bonus, 0)
+    global.bonus -= delta_time/1000000
 }
 if global.difficulty = 3 {
     if game_ended {
@@ -936,7 +958,8 @@ if next_block = 6{
           <argument>
             <kind>1</kind>
             <string>global.difficulty = 3
-bonus = 2
+global.bonus = 2
+room_goto(rm_game)
 </string>
           </argument>
         </arguments>
@@ -959,7 +982,7 @@ bonus = 2
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if debug debug = false else debug = true
+            <string>debug = !debug
 </string>
           </argument>
         </arguments>
