@@ -151,6 +151,7 @@ if global.settings {
         hover_1 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
+            score = 0
             global.difficulty = 30
         }
     } else {
@@ -172,6 +173,7 @@ if global.settings {
         hover_2 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
+            score = 0
             global.difficulty = 20
         }
     } else {
@@ -193,6 +195,7 @@ if global.settings {
         hover_3 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
+            score = 0
             global.difficulty = 10
         }
     } else {
@@ -214,6 +217,7 @@ if global.settings {
         hover_4 = true
         if(device_mouse_check_button(0, mb_left)){
             room_goto(rm_game)
+            score = 0
             global.difficulty = 5
         }
     } else {

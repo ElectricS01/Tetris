@@ -575,6 +575,7 @@ if game_ended || game_paused{
         ini_write_real("save","highscore_hard",global.hsh)
         ini_write_real("save","highscore_god",global.hsg)
         ini_write_real("save","highscore_ultra",global.hsu)
+        ini_write_real("save","difficulty",global.difficulty)
         ini_close()
     }
 
@@ -643,6 +644,7 @@ if game_ended || game_paused{
                 ini_write_real("save","highscore_hard",global.hsh)
                 ini_write_real("save","highscore_god",global.hsg)
                 ini_write_real("save","highscore_ultra",global.hsu)
+                ini_write_real("save","difficulty",global.difficulty)
                 ini_close()
             }
             row -= 64
@@ -679,6 +681,7 @@ ini_write_real("save","highscore_medium",global.hsm)
 ini_write_real("save","highscore_hard",global.hsh)
 ini_write_real("save","highscore_god",global.hsg)
 ini_write_real("save","highscore_ultra",global.hsu)
+ini_write_real("save","difficulty",30)
 ini_close()
 </string>
           </argument>
@@ -732,6 +735,7 @@ global.hsm = ini_read_real("save","highscore_medium",global.hsm)
 global.hsh = ini_read_real("save","highscore_hard",global.hsh)
 global.hsg = ini_read_real("save","highscore_god",global.hsg)
 global.hsu = ini_read_real("save","highscore_ultra",global.hsu)
+ini_write_real("save","difficulty",30)
 ini_close()
 global.difficulty_select = true
 </string>
@@ -959,6 +963,7 @@ if next_block = 6{
             <kind>1</kind>
             <string>global.difficulty = 3
 global.bonus = 2
+score = 0
 room_goto(rm_game)
 </string>
           </argument>
